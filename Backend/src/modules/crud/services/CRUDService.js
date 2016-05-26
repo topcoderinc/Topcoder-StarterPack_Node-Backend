@@ -194,7 +194,7 @@ function _searchQuery(tableName, criteria, columns) {
     if (!_.find(columns, c => c.name === criteria.sortBy)) {
       throw new ValidationError(`There is no such column called '${criteria.sortBy}' for '${tableName}'`);
     }
-    orderBy = `ORDER BY ${criteria.sortBy} `;
+    orderBy = `ORDER BY ${_escapeName(criteria.sortBy)} `;
     if (criteria.sortOrder) {
       orderBy += criteria.sortOrder === 'Descending' ? 'DESC' : 'ASC';
     }
