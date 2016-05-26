@@ -1,0 +1,293 @@
+swagger: '2.0'
+info:
+  title: Email Sending API
+  description: Topcoder internal project hybrid mobile app build pack. There are no specicial configuration variables expected to be on the backend (insecure to be sent from the front-end). Configuration will only contain typical variables for email sending like host.
+  version: "1.0.0"
+# the sample made up domain of the service
+host: test.api.topcoder.com
+# array of all schemes the API supports
+schemes:
+  - https
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header  
+# will be prefixed to all paths
+basePath: /api/v1
+produces:
+  - application/json
+paths:
+  /emails:
+    post:
+      summary: send email
+      description: This endpoint is responsible for sending an email. If email's delivery time is not specified or in the past, the email is sent immediately. Otherwise it is scheduled to be sent on the given time.  
+      security:
+        - Bearer: []
+      parameters:
+        - name: email
+          in: body
+          description: The email to send
+          required: true
+          schema:
+            $ref: '#/definitions/Email'
+      tags:
+        - Emails
+      responses:
+        200:
+          description: The response containing id of the created/send email
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Response'
+        400:
+          description: Bad Request - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: Not Aauthorized - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: Forbidden - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: Internal server error - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'      
+        default:
+          description: Unexpected error.
+          schema:
+            $ref: '#/definitions/Error'
+  /emails/{id}:          
+    get:
+      summary: get email by id
+      description: This endpoint is responsible for getting an email.
+      security:
+        - Bearer: []
+      parameters:
+        - name: id
+          in: path
+          description: The email id
+          required: true
+          type: integer
+          format: int64
+      tags:
+        - Emails
+      responses:
+        200:
+          description: The response containing an email
+          schema:
+            $ref: '#/definitions/Email'
+        400:
+          description: Bad Request - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: Not Aauthorized - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: Forbidden - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: Internal server error - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'      
+        default:
+          description: Unexpected error.
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      summary: delete email by id
+      description: This endpoint is responsible for deleting an email.
+      security:
+        - Bearer: []
+      parameters:
+        - name: id
+          in: path
+          description: The email id
+          required: true
+          type: integer
+          format: int64
+      tags:
+        - Emails
+      responses:
+        200:
+          description: The response containing an id of the deleted email
+          schema:
+            $ref: '#/definitions/Response'
+        400:
+          description: Bad Request - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: Not Aauthorized - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: Forbidden - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: Internal server error - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'      
+        default:
+          description: Unexpected error.
+          schema:
+            $ref: '#/definitions/Error'            
+            
+  /emails/{id}/deliveryStatus:          
+    get:
+      summary: get the email delivery status
+      description: This endpoint is responsible for getting an email delivery status.
+      security:
+        - Bearer: []
+      parameters:
+        - name: id
+          in: path
+          description: The email id
+          required: true
+          type: integer
+          format: int64
+      tags:
+        - Emails
+      responses:
+        200:
+          description: The response containing the delivery status
+          schema:
+            $ref: '#/definitions/DeliveryStatus'
+        400:
+          description: Bad Request - if there was problem with the request (e.g. malformed or some parameters are missing)
+          schema:
+            $ref: '#/definitions/Error'
+        401:
+          description: Not Aauthorized - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: Forbidden - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: Internal server error - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'      
+        default:
+          description: Unexpected error.
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  Email:
+    type: object
+    properties:
+      sender:
+        type: string
+        description: The sender of the email
+      recipients:
+        type: array
+        items: 
+          type: string
+        description: The recipients of the email
+      cc_recipients:
+        type: array
+        items: 
+          type: string
+        description: The CC recipients of the email
+      bcc_recipients:
+        type: array
+        items: 
+          type: string
+        description: The BCC recipients of the email
+      subject:
+        type: string
+        description: The email subject.
+      html_body:
+        type: string
+        description: The full HTML body of the mail. 
+      text_body:
+        type: string
+        description: The optional text body of the mail. 
+      attachments:
+        type: array
+        items:
+          $ref: '#/definitions/Attachment'
+      images:
+        type: array
+        items:
+          $ref: '#/definitions/Image'
+      headers:
+        type: array
+        items: 
+          type: string
+        description: The optional extra headers to add to the email    
+      delivery_time:
+        type: string
+        format: date
+        description: The delivery time of the email. When email is sending if it is not specified or in the past, the email is sent immediately. Otherwise it is scheduled to be sent.   
+  Attachment:
+    type: object
+    properties:
+      file_name:
+        type: string
+        description: The file name.
+      file_type:
+        type: string
+        description: The MIME type.
+      content_bytes:
+        type: string
+        description: The bytes content of the attachment.
+  Image:
+    type: object
+    properties:
+      name:
+        type: string
+        description: The image name to reference from HTML content.
+      type:
+        type: string
+        description: The image MIME type.
+      content_bytes:
+        type: string
+        description: The bytes content of the image.      
+  Response:
+    required:
+      - id
+    properties:
+      id:
+        type: integer
+        format: int64
+        description: The id that was created for a new object. Otherwise the id of the affected object
+      result:
+        properties:
+          success:
+            type: boolean
+            description: Was the request a success
+          code:
+            type: integer
+            format: int32
+            description: The http status code
+  DeliveryStatus:
+    required:
+      - delivered
+    properties:
+      delivered:
+        type: boolean
+        description: The flag indicating if email was delivered.
+      delivery_time:
+        type: string
+        format: date
+        description: The delivery time. 
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      fields:
+        type: string
+
