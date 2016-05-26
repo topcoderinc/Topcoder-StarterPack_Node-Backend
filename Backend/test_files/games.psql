@@ -1,0 +1,641 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.5.2
+-- Dumped by pg_dump version 9.5.0
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: games; Type: TABLE; Schema: public; Owner: uriybbylwngrsv
+--
+
+CREATE TABLE games (
+    id integer NOT NULL,
+    "gameId" text,
+    name text,
+    image text,
+    thumbnail text,
+    "minPlayers" integer,
+    "maxPlayers" integer,
+    "playingTime" integer,
+    "isExpansion" boolean,
+    "yearPublished" integer,
+    "bggRating" double precision,
+    "averageRating" double precision,
+    rank integer,
+    "numPlays" integer,
+    rating integer,
+    owned boolean,
+    "preOrdered" boolean,
+    "forTrade" boolean,
+    "previousOwned" boolean,
+    want boolean,
+    "wantToPlay" boolean,
+    "wantToBuy" boolean,
+    "wishList" boolean,
+    "userComment" text
+);
+
+
+ALTER TABLE games OWNER TO uriybbylwngrsv;
+
+--
+-- Name: games_id_seq; Type: SEQUENCE; Schema: public; Owner: uriybbylwngrsv
+--
+
+CREATE SEQUENCE games_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE games_id_seq OWNER TO uriybbylwngrsv;
+
+--
+-- Name: games_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: uriybbylwngrsv
+--
+
+ALTER SEQUENCE games_id_seq OWNED BY games.id;
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: uriybbylwngrsv
+--
+
+ALTER TABLE ONLY games ALTER COLUMN id SET DEFAULT nextval('games_id_seq'::regclass);
+
+
+--
+-- Data for Name: games; Type: TABLE DATA; Schema: public; Owner: uriybbylwngrsv
+--
+
+COPY games (id, "gameId", name, image, thumbnail, "minPlayers", "maxPlayers", "playingTime", "isExpansion", "yearPublished", "bggRating", "averageRating", rank, "numPlays", rating, owned, "preOrdered", "forTrade", "previousOwned", want, "wantToPlay", "wantToBuy", "wishList", "userComment") FROM stdin;
+2609	7865	10 Days in Africa	http://cf.geekdo-images.com/images/pic1229634.jpg	http://cf.geekdo-images.com/images/pic1229634_t.jpg	2	4	25	f	2003	0	6.56778999999999957	1302	4	7	t	f	f	f	f	f	f	f	
+2610	5867	10 Days in Europe	http://cf.geekdo-images.com/images/pic1229641.jpg	http://cf.geekdo-images.com/images/pic1229641_t.jpg	2	4	30	f	2002	0	6.60818999999999956	1279	2	7	t	f	f	f	f	f	f	f	
+2611	64956	10 Days in the Americas	http://cf.geekdo-images.com/images/pic1229649.jpg	http://cf.geekdo-images.com/images/pic1229649_t.jpg	2	4	20	f	2010	0	6.65927000000000024	2154	2	7	t	f	f	f	f	f	f	f	
+2612	68606	12 Realms	http://cf.geekdo-images.com/images/pic2761491.jpg	http://cf.geekdo-images.com/images/pic2761491_t.jpg	1	6	90	f	2010	0	5.99634	4855	0	-1	t	f	f	f	f	f	f	f	
+2613	154310	12 Realms: Ancestors Legacy	http://cf.geekdo-images.com/images/pic2015987.jpg	http://cf.geekdo-images.com/images/pic2015987_t.jpg	1	6	60	t	2015	0	6.86249999999999982	-1	0	-1	t	f	f	f	f	f	f	f	
+2614	95105	1st & Goal	http://cf.geekdo-images.com/images/pic1172132.jpg	http://cf.geekdo-images.com/images/pic1172132_t.jpg	2	4	150	f	2011	0	6.73087999999999997	1311	1	6	f	f	f	t	f	f	f	f	
+2615	192458	51st State: Master Set	http://cf.geekdo-images.com/images/pic2945432.jpg	http://cf.geekdo-images.com/images/pic2945432_t.jpg	1	4	90	f	2016	0	8.27500000000000036	3648	2	9	t	f	f	f	f	f	f	f	
+2616	68448	7 Wonders	http://cf.geekdo-images.com/images/pic860217.jpg	http://cf.geekdo-images.com/images/pic860217_t.jpg	2	7	30	f	2010	0	7.85177999999999976	25	22	9	t	f	f	f	f	f	f	f	
+2617	154638	7 Wonders: Babel	http://cf.geekdo-images.com/images/pic2286085.jpg	http://cf.geekdo-images.com/images/pic2286085_t.jpg	2	7	45	t	2014	0	7.43083000000000027	-1	0	-1	t	f	f	f	f	f	f	f	
+2618	111661	7 Wonders: Cities	http://cf.geekdo-images.com/images/pic1380423.jpg	http://cf.geekdo-images.com/images/pic1380423_t.jpg	2	8	30	t	2012	0	7.88877999999999968	-1	0	-1	t	f	f	f	f	f	f	f	
+2619	173346	7 Wonders: Duel	http://cf.geekdo-images.com/images/pic2576399.jpg	http://cf.geekdo-images.com/images/pic2576399_t.jpg	2	2	30	f	2015	0	8.22175000000000011	12	7	9	t	f	f	f	f	f	f	f	
+2620	140098	7 Wonders: Empires	http://cf.geekdo-images.com/images/pic1678158.jpg	http://cf.geekdo-images.com/images/pic1678158_t.jpg	3	8	60	t	2013	0	7.62999999999999989	-1	0	-1	f	f	f	t	f	f	f	f	
+2621	92539	7 Wonders: Leaders	http://cf.geekdo-images.com/images/pic1046319.jpg	http://cf.geekdo-images.com/images/pic1046319_t.jpg	2	7	40	t	2011	0	7.84320000000000039	-1	0	-1	t	f	f	f	f	f	f	f	
+2622	133993	7 Wonders: Wonder Pack	http://cf.geekdo-images.com/images/pic1495052.jpg	http://cf.geekdo-images.com/images/pic1495052_t.jpg	2	7	30	t	2013	0	7.56524000000000019	-1	0	-1	t	f	f	f	f	f	f	f	
+2623	172818	Above and Below	http://cf.geekdo-images.com/images/pic2398773.jpg	http://cf.geekdo-images.com/images/pic2398773_t.jpg	2	4	120	f	2015	0	7.75361999999999973	240	3	8	t	f	f	f	f	f	f	f	
+2624	155987	Abyss	http://cf.geekdo-images.com/images/pic1965255.jpg	http://cf.geekdo-images.com/images/pic1965255_t.jpg	2	4	60	f	2014	0	7.34724999999999984	302	2	7	f	f	f	t	f	f	f	f	
+2625	183231	Adventure Land	http://cf.geekdo-images.com/images/pic2958289.jpg	http://cf.geekdo-images.com/images/pic2958289_t.jpg	2	4	45	f	2015	0	7.0828300000000004	2176	1	7	t	f	f	f	f	f	f	f	
+2626	111105	Agents of SMERSH	http://cf.geekdo-images.com/images/pic2295348.jpg	http://cf.geekdo-images.com/images/pic2295348_t.jpg	1	4	90	f	2012	0	7.13947999999999983	846	0	-1	t	f	f	f	f	f	f	f	
+2627	138559	Agents of SMERSH: Swagman's Hope	http://cf.geekdo-images.com/images/pic1920453.jpg	http://cf.geekdo-images.com/images/pic1920453_t.jpg	1	5	120	t	2014	0	7.51456000000000035	-1	0	-1	t	f	f	f	f	f	f	f	
+2628	31260	Agricola	http://cf.geekdo-images.com/images/pic259085.jpg	http://cf.geekdo-images.com/images/pic259085_t.jpg	1	5	150	f	2007	0	8.09075999999999951	8	13	7	t	f	f	f	f	f	f	f	
+2629	119890	Agricola:  All Creatures Big and Small	http://cf.geekdo-images.com/images/pic1514252.jpg	http://cf.geekdo-images.com/images/pic1514252_t.jpg	2	2	30	f	2012	0	7.55855000000000032	115	3	7	t	f	f	f	f	f	f	f	
+2630	145355	Agricola: All Creatures Big and Small – Even More Buildings Big and Small	http://cf.geekdo-images.com/images/pic1723707.jpg	http://cf.geekdo-images.com/images/pic1723707_t.jpg	2	2	30	t	2013	0	7.84426999999999985	-1	0	-1	t	f	f	f	f	f	f	f	
+2631	130752	Agricola: All Creatures Big and Small – More Buildings Big and Small	http://cf.geekdo-images.com/images/pic1451726.jpg	http://cf.geekdo-images.com/images/pic1451726_t.jpg	2	2	30	t	2012	0	7.80194999999999972	-1	0	-1	t	f	f	f	f	f	f	f	
+2632	43018	Agricola: Farmers of the Moor	http://cf.geekdo-images.com/images/pic568164.jpg	http://cf.geekdo-images.com/images/pic568164_t.jpg	1	5	200	t	2009	0	8.13451000000000057	-1	0	-1	t	f	f	f	f	f	f	f	
+2633	103183	Agricola: World Championship Deck – 2011	http://cf.geekdo-images.com/images/pic1216379.jpg	http://cf.geekdo-images.com/images/pic1216379_t.jpg	1	5	180	t	2011	0	7.94034999999999958	-1	0	-1	t	f	f	f	f	f	f	f	
+2634	158973	Albion's Legacy	http://cf.geekdo-images.com/images/pic2026284.jpg	http://cf.geekdo-images.com/images/pic2026284_t.jpg	1	6	90	f	2015	0	7.35928000000000004	4351	0	-1	f	f	f	t	f	f	f	f	
+2635	161970	Alchemists	http://cf.geekdo-images.com/images/pic2241156.png	http://cf.geekdo-images.com/images/pic2241156_t.png	2	4	120	f	2014	0	7.83523999999999976	57	1	7	f	f	f	t	f	f	f	f	
+2636	40760	Alea Iacta Est	http://cf.geekdo-images.com/images/pic1218804.jpg	http://cf.geekdo-images.com/images/pic1218804_t.jpg	2	5	60	f	2009	0	6.67001000000000044	959	0	-1	f	f	f	t	f	f	f	f	
+2637	6249	Alhambra	http://cf.geekdo-images.com/images/pic1502118.jpg	http://cf.geekdo-images.com/images/pic1502118_t.jpg	2	6	60	f	2003	0	7.04588999999999999	337	11	6	f	f	f	t	f	f	f	f	
+2638	9687	Alhambra: The Vizier's Favor	http://cf.geekdo-images.com/images/pic105723.jpg	http://cf.geekdo-images.com/images/pic105723_t.jpg	2	6	60	t	2004	0	6.89343000000000039	-1	0	-1	t	f	f	f	f	f	f	f	
+2639	48726	Alien Frontiers	http://cf.geekdo-images.com/images/pic1657833.jpg	http://cf.geekdo-images.com/images/pic1657833_t.jpg	2	4	90	f	2010	0	7.52981000000000034	109	4	8	t	f	f	f	f	f	f	f	
+2640	93193	Alien Frontiers: Factions	http://cf.geekdo-images.com/images/pic2549111.jpg	http://cf.geekdo-images.com/images/pic2549111_t.jpg	2	5	60	t	2012	0	7.74735999999999958	-1	0	-1	t	f	f	f	f	f	f	f	
+2641	110277	Among the Stars	http://cf.geekdo-images.com/images/pic2037906.jpg	http://cf.geekdo-images.com/images/pic2037906_t.jpg	2	4	30	f	2012	0	7.28115999999999985	304	3	8	t	f	f	f	f	f	f	f	
+2642	139630	Among the Stars: The Ambassadors	http://cf.geekdo-images.com/images/pic1801598.jpg	http://cf.geekdo-images.com/images/pic1801598_t.jpg	2	4	30	t	2013	0	7.52653000000000016	-1	0	-1	t	f	f	f	f	f	f	f	
+2643	147253	The Ancient World	http://cf.geekdo-images.com/images/pic1951629.jpg	http://cf.geekdo-images.com/images/pic1951629_t.jpg	2	4	90	f	2014	0	7.27740000000000009	798	1	7	t	f	f	f	f	f	f	f	
+2644	124742	Android: Netrunner	http://cf.geekdo-images.com/images/pic1324609.jpg	http://cf.geekdo-images.com/images/pic1324609_t.jpg	2	2	45	f	2012	0	8.09216999999999942	14	30	7	t	f	f	f	f	f	f	f	
+2645	139596	Android: Netrunner – Creation and Control	http://cf.geekdo-images.com/images/pic1639594.jpg	http://cf.geekdo-images.com/images/pic1639594_t.jpg	2	2	45	t	2013	0	8.39071999999999996	-1	0	-1	t	f	f	f	f	f	f	f	
+2646	152314	Android: Netrunner – Honor and Profit	http://cf.geekdo-images.com/images/pic1878471.jpg	http://cf.geekdo-images.com/images/pic1878471_t.jpg	2	2	45	t	2014	0	8.56253000000000064	-1	0	-1	t	f	f	f	f	f	f	f	
+2647	159508	AquaSphere	http://cf.geekdo-images.com/images/pic2197124.jpg	http://cf.geekdo-images.com/images/pic2197124_t.jpg	2	4	100	f	2014	0	7.43674000000000035	282	1	7	t	f	f	f	f	f	f	f	
+2648	41933	Arctic Scavengers	http://cf.geekdo-images.com/images/pic1114682.jpg	http://cf.geekdo-images.com/images/pic1114682_t.jpg	2	5	60	f	2009	0	7.00305999999999962	742	3	8	t	f	f	f	f	f	f	f	
+2649	42950	Arctic Scavengers: HQ	http://cf.geekdo-images.com/images/pic533559.jpg	http://cf.geekdo-images.com/images/pic533559_t.jpg	2	5	45	t	2011	0	7.4041699999999997	-1	0	-1	t	f	f	f	f	f	f	f	
+2650	42951	Arctic Scavengers: Recon	http://cf.geekdo-images.com/images/pic2431658.jpg	http://cf.geekdo-images.com/images/pic2431658_t.jpg	1	5	60	t	2015	0	7.68728999999999996	-1	0	-1	t	f	f	f	f	f	f	f	
+2651	69789	Ascension	http://cf.geekdo-images.com/images/pic2382123.jpg	http://cf.geekdo-images.com/images/pic2382123_t.jpg	1	4	30	f	2010	0	7.06350999999999996	408	10	8	t	f	f	f	f	f	f	f	
+2652	145633	Ascension: Apprentice Edition	http://cf.geekdo-images.com/images/pic1733803.jpg	http://cf.geekdo-images.com/images/pic1733803_t.jpg	2	2	30	f	2013	0	7.20544999999999991	1358	0	-1	t	f	f	f	f	f	f	f	
+2653	185123	Ascension: Dreamscape	http://cf.geekdo-images.com/images/pic2691059.jpg	http://cf.geekdo-images.com/images/pic2691059_t.jpg	1	4	60	f	2015	0	7.97750000000000004	3295	3	8	t	f	f	f	f	f	f	f	
+2654	157026	Ascension: Realms Unraveled	http://cf.geekdo-images.com/images/pic2054959.png	http://cf.geekdo-images.com/images/pic2054959_t.png	1	4	30	f	2014	0	7.76827999999999985	970	0	8	t	f	f	f	f	f	f	f	Outstanding.  My favorite version of Ascension.
+2655	95064	Ascension: Return of the Fallen	http://cf.geekdo-images.com/images/pic947575.jpg	http://cf.geekdo-images.com/images/pic947575_t.jpg	1	2	30	t	2011	0	7.37957000000000019	397	0	-1	f	f	f	t	f	f	f	f	%Expands: Ascension: Chronicle of the Godslayer [69789]
+2656	158976	Ascension: Year One Collector's Edition	http://cf.geekdo-images.com/images/pic2422635.jpg	http://cf.geekdo-images.com/images/pic2422635_t.jpg	1	6	30	f	2015	0	8.19771000000000072	-1	0	-1	t	f	f	f	f	f	f	f	
+2657	149241	Assault on Doomrock	http://cf.geekdo-images.com/images/pic1808352.jpg	http://cf.geekdo-images.com/images/pic1808352_t.jpg	1	4	150	f	2014	0	7.36856000000000044	1317	1	7	t	f	f	f	f	f	f	f	
+2658	143741	BANG! The Dice Game	http://cf.geekdo-images.com/images/pic2909713.jpg	http://cf.geekdo-images.com/images/pic2909713_t.jpg	3	8	15	f	2013	0	7.03308	418	0	-1	f	f	f	t	f	f	f	f	
+2659	135219	The Battle of Five Armies	http://cf.geekdo-images.com/images/pic1886964.jpg	http://cf.geekdo-images.com/images/pic1886964_t.jpg	2	2	240	f	2014	0	8.0770300000000006	359	0	-1	t	f	f	f	f	f	f	f	
+2660	37111	Battlestar Galactica	http://cf.geekdo-images.com/images/pic354500.jpg	http://cf.geekdo-images.com/images/pic354500_t.jpg	3	6	240	f	2008	0	7.80208999999999975	39	1	8	t	f	f	f	f	f	f	f	
+2661	50750	Belfort	http://cf.geekdo-images.com/images/pic1368514.jpg	http://cf.geekdo-images.com/images/pic1368514_t.jpg	2	5	120	f	2011	0	7.37286000000000019	248	2	8	t	f	f	f	f	f	f	f	
+2662	141320	Belfort: The Expansion Expansion	http://cf.geekdo-images.com/images/pic1640305.jpg	http://cf.geekdo-images.com/images/pic1640305_t.jpg	2	5	90	t	2013	0	7.64057999999999993	-1	0	-1	t	f	f	f	f	f	f	f	
+2663	139897	Belle of the Ball	http://cf.geekdo-images.com/images/pic1753202.jpg	http://cf.geekdo-images.com/images/pic1753202_t.jpg	2	5	45	f	2014	0	6.21663999999999994	3292	0	-1	f	f	f	t	f	f	f	f	
+2664	10547	Betrayal at House on the Hill	http://cf.geekdo-images.com/images/pic828598.jpg	http://cf.geekdo-images.com/images/pic828598_t.jpg	3	6	60	f	2004	0	7.10362999999999989	352	2	6	t	f	f	f	f	f	f	f	
+2665	168435	Between Two Cities	http://cf.geekdo-images.com/images/pic2326114.jpg	http://cf.geekdo-images.com/images/pic2326114_t.jpg	1	7	20	f	2015	0	7.2356600000000002	427	1	8	t	f	f	f	f	f	f	f	
+2666	34219	Biblios	http://cf.geekdo-images.com/images/pic759154.jpg	http://cf.geekdo-images.com/images/pic759154_t.jpg	2	4	30	f	2007	0	7.24561000000000011	261	5	7	t	f	f	f	f	f	f	f	
+2667	164506	Biblios Dice	http://cf.geekdo-images.com/images/pic2300088.jpg	http://cf.geekdo-images.com/images/pic2300088_t.jpg	2	5	30	f	2015	0	6.96537000000000006	2755	1	6	t	f	f	f	f	f	f	f	
+2668	171233	The Big Book of Madness	http://cf.geekdo-images.com/images/pic2750172.jpg	http://cf.geekdo-images.com/images/pic2750172_t.jpg	2	5	90	f	2015	0	7.34884999999999966	930	1	6	t	f	f	f	f	f	f	f	
+2669	157403	Black Fleet	http://cf.geekdo-images.com/images/pic1987366.jpg	http://cf.geekdo-images.com/images/pic1987366_t.jpg	3	4	60	f	2014	0	7.14845000000000041	563	0	-1	f	f	f	t	f	f	f	f	
+2670	170216	Blood Rage	http://cf.geekdo-images.com/images/pic2439223.jpg	http://cf.geekdo-images.com/images/pic2439223_t.jpg	2	4	90	f	2015	0	8.26852000000000054	20	3	8	t	f	f	f	f	f	f	f	
+2671	21882	Blue Moon City	http://cf.geekdo-images.com/images/pic114772.jpg	http://cf.geekdo-images.com/images/pic114772_t.jpg	2	4	60	f	2006	0	7.06193999999999988	401	1	7	f	f	f	t	f	f	f	f	
+2672	147154	Blue Moon Legends	http://cf.geekdo-images.com/images/pic1854836.jpg	http://cf.geekdo-images.com/images/pic1854836_t.jpg	2	2	30	f	2014	0	7.46506000000000025	-1	0	-1	f	f	f	t	f	f	f	f	
+2673	140933	Blueprints	http://cf.geekdo-images.com/images/pic1877243.jpg	http://cf.geekdo-images.com/images/pic1877243_t.jpg	2	4	30	f	2013	0	6.9733900000000002	579	0	-1	f	f	f	t	f	f	f	f	
+2674	142267	Bomb Squad	http://cf.geekdo-images.com/images/pic2162016.png	http://cf.geekdo-images.com/images/pic2162016_t.png	2	6	30	f	2013	0	6.90439999999999987	2261	0	-1	t	f	f	f	f	f	f	f	
+2675	139898	Brew Crafters	http://cf.geekdo-images.com/images/pic1601585.jpg	http://cf.geekdo-images.com/images/pic1601585_t.jpg	2	5	90	f	2013	0	7.69798999999999989	504	1	7	t	f	f	f	f	f	f	f	
+2676	172308	Broom Service	http://cf.geekdo-images.com/images/pic2546156.jpg	http://cf.geekdo-images.com/images/pic2546156_t.jpg	2	5	75	f	2015	0	7.31440000000000001	476	0	-1	f	t	f	f	f	f	f	f	
+2677	136888	Bruges	http://cf.geekdo-images.com/images/pic1652004.jpg	http://cf.geekdo-images.com/images/pic1652004_t.jpg	2	4	60	f	2013	0	7.52512000000000025	144	1	7	t	f	f	f	f	f	f	f	
+2678	161226	The Builders: Antiquity	http://cf.geekdo-images.com/images/pic2499362.jpg	http://cf.geekdo-images.com/images/pic2499362_t.jpg	2	4	30	f	2015	0	7.09077000000000002	1975	1	7	t	f	f	f	f	f	f	f	
+2679	153938	Camel Up	http://cf.geekdo-images.com/images/pic1918028.jpg	http://cf.geekdo-images.com/images/pic1918028_t.jpg	2	8	30	f	2014	0	7.11800000000000033	344	5	7	t	f	f	f	f	f	f	f	
+2680	159503	The Captain Is Dead	http://cf.geekdo-images.com/images/pic2037090.png	http://cf.geekdo-images.com/images/pic2037090_t.png	2	7	90	f	2014	0	7.42511999999999972	1535	3	7	t	f	f	f	f	f	f	f	
+2681	163685	Captain's Wager	http://cf.geekdo-images.com/images/pic2563817.png	http://cf.geekdo-images.com/images/pic2563817_t.png	2	5	30	f	2015	0	6.14090000000000025	6140	0	-1	f	f	t	t	f	f	f	f	
+2682	822	Carcassonne	http://cf.geekdo-images.com/images/pic2337577.jpg	http://cf.geekdo-images.com/images/pic2337577_t.jpg	2	5	45	f	2000	0	7.43494999999999973	120	14	7	t	f	f	f	f	f	f	f	
+2683	33458	Carcassonne: Count, King & Robber	http://cf.geekdo-images.com/images/pic1244090.jpg	http://cf.geekdo-images.com/images/pic1244090_t.jpg	2	6	45	t	2007	0	6.76668999999999965	-1	0	-1	f	f	f	t	f	f	f	f	
+2684	2993	Carcassonne: Expansion 1 – Inns & Cathedrals	http://cf.geekdo-images.com/images/pic2659943.jpg	http://cf.geekdo-images.com/images/pic2659943_t.jpg	2	6	60	t	2002	0	7.60017999999999994	-1	0	-1	t	f	f	f	f	f	f	f	
+2685	5405	Carcassonne: Expansion 2 – Traders & Builders	http://cf.geekdo-images.com/images/pic2659946.jpg	http://cf.geekdo-images.com/images/pic2659946_t.jpg	2	6	60	t	2003	0	7.58962000000000003	-1	0	-1	t	f	f	f	f	f	f	f	
+2686	4390	Carcassonne: Hunters and Gatherers	http://cf.geekdo-images.com/images/pic2428656.png	http://cf.geekdo-images.com/images/pic2428656_t.png	2	5	45	f	2002	0	7.15744999999999987	313	2	6	f	f	f	t	f	f	f	f	
+2687	147303	Carcassonne: South Seas	http://cf.geekdo-images.com/images/pic1917224.jpg	http://cf.geekdo-images.com/images/pic1917224_t.jpg	2	5	35	f	2013	0	7.21591000000000005	645	1	6	f	f	f	t	f	f	f	f	
+2688	7717	Carcassonne: The Castle	http://cf.geekdo-images.com/images/pic2606367.jpg	http://cf.geekdo-images.com/images/pic2606367_t.jpg	2	2	30	f	2003	0	7.08133999999999997	416	4	8	t	f	f	f	f	f	f	f	
+2689	12902	Carcassonne: The City	http://cf.geekdo-images.com/images/pic839808.jpg	http://cf.geekdo-images.com/images/pic839808_t.jpg	2	4	45	f	2004	0	7.21138999999999974	394	1	7	f	f	f	t	f	f	f	f	
+2690	18836	Carcassonne: The River II	http://cf.geekdo-images.com/images/pic105976.jpg	http://cf.geekdo-images.com/images/pic105976_t.jpg	2	6	60	t	2005	0	7.15226999999999968	-1	0	-1	f	f	f	t	f	f	f	f	
+2691	130882	Cardline: Animals	http://cf.geekdo-images.com/images/pic1714093.png	http://cf.geekdo-images.com/images/pic1714093_t.png	2	8	15	f	2012	0	6.67518999999999973	1531	2	6	t	f	f	f	f	f	f	f	
+2692	50381	Cards Against Humanity	http://cf.geekdo-images.com/images/pic2909692.jpg	http://cf.geekdo-images.com/images/pic2909692_t.jpg	4	30	30	f	2009	0	6.36413999999999991	1326	1	6	t	f	f	f	f	f	f	f	
+2693	43443	Castle Panic	http://cf.geekdo-images.com/images/pic496923.jpg	http://cf.geekdo-images.com/images/pic496923_t.jpg	1	6	60	f	2009	0	6.72518999999999956	688	1	6	f	f	f	t	f	f	f	f	
+2694	133814	Castle Panic: Crossbow promo	http://cf.geekdo-images.com/images/pic1515870.jpg	http://cf.geekdo-images.com/images/pic1515870_t.jpg	-1	-1	-1	t	2012	0	6.39881999999999973	-1	0	-1	f	f	f	t	f	f	f	f	
+2695	104590	Castle Panic: The Wizard's Tower	http://cf.geekdo-images.com/images/pic1063887.jpg	http://cf.geekdo-images.com/images/pic1063887_t.jpg	1	6	90	t	2011	0	7.54957000000000011	-1	0	-1	f	f	f	t	f	f	f	f	
+2696	84876	The Castles of Burgundy	http://cf.geekdo-images.com/images/pic1176894.jpg	http://cf.geekdo-images.com/images/pic1176894_t.jpg	2	4	90	f	2011	0	8.10549999999999926	9	4	8	t	f	f	f	f	f	f	f	
+2697	155426	Castles of Mad King Ludwig	http://cf.geekdo-images.com/images/pic1961827.jpg	http://cf.geekdo-images.com/images/pic1961827_t.jpg	1	4	90	f	2014	0	7.8219599999999998	46	11	9	t	f	f	f	f	f	f	f	
+2698	174296	Castles of Mad King Ludwig: Secrets	http://cf.geekdo-images.com/images/pic2452313.jpg	http://cf.geekdo-images.com/images/pic2452313_t.jpg	1	4	90	t	2015	0	7.57200999999999969	-1	0	-1	t	f	f	f	f	f	f	f	
+2699	13	Catan	http://cf.geekdo-images.com/images/pic2419375.jpg	http://cf.geekdo-images.com/images/pic2419375_t.jpg	3	4	120	f	1995	0	7.30424000000000007	199	2	7	t	f	f	f	f	f	f	f	
+2700	161527	Catan: Ancient Egypt	http://cf.geekdo-images.com/images/pic2228343.jpg	http://cf.geekdo-images.com/images/pic2228343_t.jpg	3	4	75	f	2014	0	7.29239000000000015	2947	0	-1	f	f	f	t	f	f	f	f	
+2701	67239	Catan Histories: Settlers of America – Trails to Rails	http://cf.geekdo-images.com/images/pic685614.jpg	http://cf.geekdo-images.com/images/pic685614_t.jpg	3	4	120	f	2010	0	6.93560999999999961	857	0	-1	f	f	f	t	f	f	f	f	
+2702	129351	The Cave	http://cf.geekdo-images.com/images/pic1399091.jpg	http://cf.geekdo-images.com/images/pic1399091_t.jpg	2	5	60	f	2012	0	6.63532000000000011	1384	1	7	f	f	f	t	f	f	f	f	
+2703	102794	Caverna: The Cave Farmers	http://cf.geekdo-images.com/images/pic1790789.jpg	http://cf.geekdo-images.com/images/pic1790789_t.jpg	1	7	210	f	2013	0	8.23391999999999946	5	6	9	t	f	f	f	f	f	f	f	
+2704	27364	Caylus Magna Carta	http://cf.geekdo-images.com/images/pic339842.jpg	http://cf.geekdo-images.com/images/pic339842_t.jpg	2	4	75	f	2007	0	7.00227999999999984	491	1	7	t	f	f	f	f	f	f	f	
+2705	172287	Champions of Midgard	http://cf.geekdo-images.com/images/pic2869714.jpg	http://cf.geekdo-images.com/images/pic2869714_t.jpg	2	4	90	f	2015	0	7.69477999999999973	405	1	7	t	f	f	f	f	f	f	f	
+2706	478	Citadels	http://cf.geekdo-images.com/images/pic636868.jpg	http://cf.geekdo-images.com/images/pic636868_t.jpg	2	8	60	f	2000	0	7.16666000000000025	244	0	-1	f	f	f	t	f	f	f	f	
+2707	123499	City of Iron	http://cf.geekdo-images.com/images/pic1292441.jpg	http://cf.geekdo-images.com/images/pic1292441_t.jpg	2	4	120	f	2013	0	7.42884999999999973	584	1	7	t	f	f	f	f	f	f	f	
+2708	36932	Claustrophobia	http://cf.geekdo-images.com/images/pic570518.jpg	http://cf.geekdo-images.com/images/pic570518_t.jpg	2	2	45	f	2009	0	7.64442000000000021	126	1	8	t	f	f	f	f	f	f	f	
+2709	178900	Codenames	http://cf.geekdo-images.com/images/pic2582929.jpg	http://cf.geekdo-images.com/images/pic2582929_t.jpg	2	8	15	f	2015	0	8.02464999999999939	17	5	9	t	f	f	f	f	f	f	f	
+2710	162578	Collapse	http://cf.geekdo-images.com/images/pic2088004.png	http://cf.geekdo-images.com/images/pic2088004_t.png	2	4	20	f	2015	0	6.41633000000000031	7148	1	7	t	f	f	f	f	f	f	f	
+2711	158899	Colt Express	http://cf.geekdo-images.com/images/pic2869710.jpg	http://cf.geekdo-images.com/images/pic2869710_t.jpg	2	6	40	f	2014	0	7.27289999999999992	257	1	7	t	f	f	f	f	f	f	f	
+2712	118174	Compounded	http://cf.geekdo-images.com/images/pic1322957.jpg	http://cf.geekdo-images.com/images/pic1322957_t.jpg	2	5	90	f	2013	0	6.95261999999999958	925	1	7	t	f	f	f	f	f	f	f	
+2713	163257	Compounded: Geiger Expansion	http://cf.geekdo-images.com/images/pic2094101.jpg	http://cf.geekdo-images.com/images/pic2094101_t.jpg	1	5	90	t	2015	0	7.38902000000000037	-1	0	-1	t	f	f	f	f	f	f	f	
+2714	124361	Concordia	http://cf.geekdo-images.com/images/pic1980675.jpg	http://cf.geekdo-images.com/images/pic1980675_t.jpg	2	5	100	f	2013	0	7.89888999999999974	43	4	9	t	f	f	f	f	f	f	f	
+2715	165023	Concordia: Britannia & Germania	http://cf.geekdo-images.com/images/pic2286539.jpg	http://cf.geekdo-images.com/images/pic2286539_t.jpg	2	5	100	t	2014	0	8.06276000000000082	-1	0	-1	t	f	f	f	f	f	f	f	
+2716	181084	Concordia: Salsa	http://cf.geekdo-images.com/images/pic2682307.jpg	http://cf.geekdo-images.com/images/pic2682307_t.jpg	2	5	90	t	2015	0	8.21766000000000041	-1	0	-1	t	f	f	f	f	f	f	f	
+2717	98351	Core Worlds	http://cf.geekdo-images.com/images/pic1063921.jpg	http://cf.geekdo-images.com/images/pic1063921_t.jpg	2	5	90	f	2011	0	7.2920499999999997	378	3	7	t	f	f	f	f	f	f	f	
+2718	125099	Core Worlds: Galactic Orders	http://cf.geekdo-images.com/images/pic1377006.jpg	http://cf.geekdo-images.com/images/pic1377006_t.jpg	2	5	90	t	2012	0	8.05381999999999998	-1	0	-1	t	f	f	f	f	f	f	f	
+2719	156867	Core Worlds: Revolution	http://cf.geekdo-images.com/images/pic2059260.jpg	http://cf.geekdo-images.com/images/pic2059260_t.jpg	2	5	120	t	2014	0	7.75192000000000014	-1	0	-1	t	f	f	f	f	f	f	f	
+2720	39463	Cosmic Encounter	http://cf.geekdo-images.com/images/pic1521633.jpg	http://cf.geekdo-images.com/images/pic1521633_t.jpg	3	5	120	f	2008	0	7.61191999999999958	77	3	7	t	f	f	f	f	f	f	f	
+2721	61001	Cosmic Encounter: Cosmic Incursion	http://cf.geekdo-images.com/images/pic657393.jpg	http://cf.geekdo-images.com/images/pic657393_t.jpg	3	6	60	t	2010	0	8.27663000000000082	-1	0	-1	t	f	f	f	f	f	f	f	
+2722	140863	Council of Verona	http://cf.geekdo-images.com/images/pic1727393.jpg	http://cf.geekdo-images.com/images/pic1727393_t.jpg	2	5	20	f	2013	0	6.52045999999999992	1510	2	7	t	f	f	f	f	f	f	f	
+2723	147827	Council of Verona: Poison Expansion	http://cf.geekdo-images.com/images/pic1776648.jpg	http://cf.geekdo-images.com/images/pic1776648_t.jpg	2	5	30	t	2013	0	6.8979499999999998	-1	0	-1	t	f	f	f	f	f	f	f	
+2724	131357	Coup	http://cf.geekdo-images.com/images/pic2016054.jpg	http://cf.geekdo-images.com/images/pic2016054_t.jpg	2	6	15	f	2012	0	7.1668099999999999	272	6	6	t	f	f	f	f	f	f	f	
+2725	148931	Coup: Reformation	http://cf.geekdo-images.com/images/pic1978817.jpg	http://cf.geekdo-images.com/images/pic1978817_t.jpg	2	10	15	t	2013	0	7.43796999999999997	-1	0	-1	t	f	f	f	f	f	f	f	
+2726	521	Crokinole	http://cf.geekdo-images.com/images/pic79413.jpg	http://cf.geekdo-images.com/images/pic79413_t.jpg	2	4	30	f	1876	0	7.80497999999999958	53	2	7	t	f	f	f	f	f	f	f	
+2727	143986	CV	http://cf.geekdo-images.com/images/pic1968267.jpg	http://cf.geekdo-images.com/images/pic1968267_t.jpg	2	4	60	f	2013	0	6.87429000000000023	741	2	8	t	f	f	f	f	f	f	f	
+2728	111124	Dark Moon	http://cf.geekdo-images.com/images/pic2320134.jpg	http://cf.geekdo-images.com/images/pic2320134_t.jpg	3	7	75	f	2011	0	7.20638000000000023	686	2	8	t	f	f	f	f	f	f	f	
+2729	141423	Dead Men Tell No Tales	http://cf.geekdo-images.com/images/pic2545662.jpg	http://cf.geekdo-images.com/images/pic2545662_t.jpg	2	5	75	f	2015	0	7.34788999999999959	1048	1	7	f	f	f	t	f	f	f	f	
+2730	150376	Dead of Winter: A Crossroads Game	http://cf.geekdo-images.com/images/pic3016500.jpg	http://cf.geekdo-images.com/images/pic3016500_t.jpg	2	5	210	f	2014	0	7.98538000000000014	23	8	8	t	f	f	f	f	f	f	f	
+2731	156129	Deception: Murder in Hong Kong	http://cf.geekdo-images.com/images/pic2568916.jpg	http://cf.geekdo-images.com/images/pic2568916_t.jpg	4	12	20	f	2014	0	7.62985000000000024	523	4	7	t	f	f	f	f	f	f	f	
+2732	65532	Defenders of the Realm	http://cf.geekdo-images.com/images/pic649329.jpg	http://cf.geekdo-images.com/images/pic649329_t.jpg	1	4	90	f	2010	0	7.41769999999999996	258	0	-1	f	f	f	t	f	f	f	f	
+2733	93897	Defenders of the Realm: Hero Expansion #1	http://cf.geekdo-images.com/images/pic931454.jpg	http://cf.geekdo-images.com/images/pic931454_t.jpg	1	4	120	t	2011	0	7.6590600000000002	-1	0	-1	f	f	f	t	f	f	f	f	
+2734	93898	Defenders of the Realm: Hero Expansion #2	http://cf.geekdo-images.com/images/pic931478.jpg	http://cf.geekdo-images.com/images/pic931478_t.jpg	1	4	120	t	2011	0	7.67476999999999965	-1	0	-1	f	f	f	t	f	f	f	f	
+2735	93899	Defenders of the Realm: Hero Expansion #3	http://cf.geekdo-images.com/images/pic931480.jpg	http://cf.geekdo-images.com/images/pic931480_t.jpg	1	4	120	t	2011	0	7.68839000000000006	-1	0	-1	f	f	f	t	f	f	f	f	
+2736	72238	Defenders of the Realm: The Dragon Expansion	http://cf.geekdo-images.com/images/pic788859.jpg	http://cf.geekdo-images.com/images/pic788859_t.jpg	1	6	90	t	2010	0	7.70244000000000018	-1	0	-1	f	f	f	t	f	f	f	f	
+2737	104162	Descent: Journeys in the Dark (Second Edition)	http://cf.geekdo-images.com/images/pic1180640.jpg	http://cf.geekdo-images.com/images/pic1180640_t.jpg	2	5	120	f	2012	0	7.78903000000000034	54	5	8	t	f	f	f	f	f	f	f	
+2738	176443	Descent: Journeys in the Dark (Second Edition) – Dark Elements	http://cf.geekdo-images.com/images/pic2497110.jpg	http://cf.geekdo-images.com/images/pic2497110_t.jpg	1	4	120	t	2015	0	8.03867999999999938	-1	0	-1	t	f	f	f	f	f	f	f	
+2739	153235	Descent: Journeys in the Dark (Second Edition) – Forgotten Souls	http://cf.geekdo-images.com/images/pic2202239.png	http://cf.geekdo-images.com/images/pic2202239_t.png	1	4	150	t	2014	0	7.88018000000000018	-1	0	-1	t	f	f	f	f	f	f	f	
+2740	137842	Descent: Journeys in the Dark (Second Edition) – Labyrinth of Ruin	http://cf.geekdo-images.com/images/pic1639612.jpg	http://cf.geekdo-images.com/images/pic1639612_t.jpg	2	5	90	t	2013	0	8.23353000000000002	-1	0	-1	t	f	f	f	f	f	f	f	
+2741	129423	Descent: Journeys in the Dark (Second Edition) – Lair of the Wyrm	http://cf.geekdo-images.com/images/pic1406139.jpg	http://cf.geekdo-images.com/images/pic1406139_t.jpg	2	5	120	t	2012	0	7.89154	-1	0	-1	t	f	f	f	f	f	f	f	
+2742	170959	Descent: Journeys in the Dark (Second Edition) – Nature's Ire	http://cf.geekdo-images.com/images/pic2365032.jpg	http://cf.geekdo-images.com/images/pic2365032_t.jpg	1	4	150	t	2014	0	8.09962999999999944	-1	0	-1	t	f	f	f	f	f	f	f	
+2743	162082	Deus	http://cf.geekdo-images.com/images/pic2219643.png	http://cf.geekdo-images.com/images/pic2219643_t.png	2	4	90	f	2014	0	7.44416000000000011	231	2	8	t	f	f	f	f	f	f	f	
+2744	152162	Diamonds	http://cf.geekdo-images.com/images/pic1986481.jpg	http://cf.geekdo-images.com/images/pic1986481_t.jpg	2	6	30	f	2014	0	7.05287000000000042	569	0	-1	f	f	f	t	f	f	f	f	
+2745	150364	Dig Down Dwarf	http://cf.geekdo-images.com/images/pic1828893.jpg	http://cf.geekdo-images.com/images/pic1828893_t.jpg	2	4	15	f	2013	0	6.42842999999999964	3857	1	5	f	f	f	t	f	f	f	f	
+2746	171669	Discoveries	http://cf.geekdo-images.com/images/pic2571301.jpg	http://cf.geekdo-images.com/images/pic2571301_t.jpg	2	4	60	f	2015	0	7.29739999999999966	495	1	7	f	f	f	f	f	f	f	f	
+2747	91312	Discworld: Ankh-Morpork	http://cf.geekdo-images.com/images/pic1062739.jpg	http://cf.geekdo-images.com/images/pic1062739_t.jpg	2	4	60	f	2011	0	7.17018999999999984	361	0	-1	t	f	f	f	f	f	f	f	
+2748	125675	Doctor Who: The Card Game	http://cf.geekdo-images.com/images/pic1327331.jpg	http://cf.geekdo-images.com/images/pic1327331_t.jpg	2	4	60	f	2012	0	5.87929000000000013	4244	0	-1	f	f	f	t	f	f	f	f	
+2749	36218	Dominion	http://cf.geekdo-images.com/images/pic394356.jpg	http://cf.geekdo-images.com/images/pic394356_t.jpg	2	4	30	f	2008	0	7.73733000000000004	42	7	8	t	f	f	f	f	f	f	f	
+2750	66690	Dominion: Prosperity	http://cf.geekdo-images.com/images/pic1747320.jpg	http://cf.geekdo-images.com/images/pic1747320_t.jpg	2	4	30	t	2010	0	8.33125000000000071	-1	0	-1	t	f	f	f	f	f	f	f	
+2751	156714	Doomtown: Reloaded	http://cf.geekdo-images.com/images/pic1963882.jpg	http://cf.geekdo-images.com/images/pic1963882_t.jpg	2	4	30	f	2014	0	7.60728999999999989	539	2	7	f	f	f	t	f	f	f	f	
+2752	172933	Dragonwood	http://cf.geekdo-images.com/images/pic2401338.jpg	http://cf.geekdo-images.com/images/pic2401338_t.jpg	2	4	20	f	2015	0	7.0041500000000001	2844	1	7	t	f	f	f	f	f	f	f	
+2753	102548	Dungeon Fighter	http://cf.geekdo-images.com/images/pic2411495.png	http://cf.geekdo-images.com/images/pic2411495_t.png	1	6	45	f	2011	0	6.91704000000000008	653	1	7	t	f	f	f	f	f	f	f	
+2754	45315	Dungeon Lords	http://cf.geekdo-images.com/images/pic569340.jpg	http://cf.geekdo-images.com/images/pic569340_t.jpg	2	4	90	f	2009	0	7.48317999999999994	128	1	7	t	f	f	f	f	f	f	f	
+2755	126839	Dungeon Lords: Festival Season	http://cf.geekdo-images.com/images/pic1421546.jpg	http://cf.geekdo-images.com/images/pic1421546_t.jpg	2	4	120	t	2012	0	7.86882000000000037	-1	0	-1	t	f	f	f	f	f	f	f	
+2756	97207	Dungeon Petz	http://cf.geekdo-images.com/images/pic1103979.jpg	http://cf.geekdo-images.com/images/pic1103979_t.jpg	2	4	90	f	2011	0	7.62335000000000029	101	1	6	t	f	f	f	f	f	f	f	
+2757	157958	DungeonQuest	http://cf.geekdo-images.com/images/pic2017396.jpg	http://cf.geekdo-images.com/images/pic2017396_t.jpg	1	4	60	f	2014	0	7.26626999999999956	1416	2	6	t	f	f	f	f	f	f	f	
+2758	160902	Dungeons & Dragons Dice Masters: Battle for Faerûn	http://cf.geekdo-images.com/images/pic2078577.jpg	http://cf.geekdo-images.com/images/pic2078577_t.jpg	2	2	60	f	2015	0	7.60939000000000032	618	7	7	t	f	f	f	f	f	f	f	
+2759	155689	Dungeons & Dragons: Attack Wing	http://cf.geekdo-images.com/images/pic2301154.png	http://cf.geekdo-images.com/images/pic2301154_t.png	2	99	30	f	2014	0	7.65420999999999996	1532	10	8	t	f	f	f	f	f	f	f	
+2760	161320	Dungeons & Dragons: Attack Wing – Aarakocra Troop Expansion Pack	http://cf.geekdo-images.com/images/pic2350257.jpg	http://cf.geekdo-images.com/images/pic2350257_t.jpg	2	99	30	t	2014	0	7.08333000000000013	-1	0	-1	t	f	f	f	f	f	f	f	
+2761	161310	Dungeons & Dragons: Attack Wing – Black Shadow Dragon Expansion Pack	http://cf.geekdo-images.com/images/pic2350162.jpg	http://cf.geekdo-images.com/images/pic2350162_t.jpg	2	99	30	t	2014	0	7.39142999999999972	-1	0	-1	t	f	f	f	f	f	f	f	
+2762	161308	Dungeons & Dragons: Attack Wing – Dwarven Ballista Expansion Pack	http://cf.geekdo-images.com/images/pic2289032.jpg	http://cf.geekdo-images.com/images/pic2289032_t.jpg	2	99	30	t	2014	0	7.70666999999999991	-1	0	-1	t	f	f	f	f	f	f	f	
+2763	161305	Dungeons & Dragons: Attack Wing – Frost Giant Expansion Pack	http://cf.geekdo-images.com/images/pic2289044.jpg	http://cf.geekdo-images.com/images/pic2289044_t.jpg	2	99	30	t	2014	0	7.78570999999999991	-1	0	-1	t	f	f	f	f	f	f	f	
+2764	161291	Dungeons & Dragons: Attack Wing – Green Dragon Expansion Pack	http://cf.geekdo-images.com/images/pic2289051.jpg	http://cf.geekdo-images.com/images/pic2289051_t.jpg	2	99	30	t	2014	0	7.53190999999999988	-1	0	-1	t	f	f	f	f	f	f	f	
+2765	161307	Dungeons & Dragons: Attack Wing – Hobgoblin Troop Expansion Pack	http://cf.geekdo-images.com/images/pic2289035.jpg	http://cf.geekdo-images.com/images/pic2289035_t.jpg	2	99	30	t	2014	0	7.19688000000000017	-1	0	-1	t	f	f	f	f	f	f	f	
+2766	161319	Dungeons & Dragons: Attack Wing – Movanic Deva Angel Expansion Pack	http://cf.geekdo-images.com/images/pic2350256.jpg	http://cf.geekdo-images.com/images/pic2350256_t.jpg	2	99	30	t	2014	0	7.69047999999999998	-1	0	-1	t	f	f	f	f	f	f	f	
+2767	161306	Dungeons & Dragons: Attack Wing – Sun Elf Troop Expansion Pack	http://cf.geekdo-images.com/images/pic2289038.jpg	http://cf.geekdo-images.com/images/pic2289038_t.jpg	2	99	30	t	2014	0	7.12068999999999974	-1	0	-1	t	f	f	f	f	f	f	f	
+2768	161292	Dungeons & Dragons: Attack Wing – Sun Elf Wizard Expansion Pack	http://cf.geekdo-images.com/images/pic2289049.jpg	http://cf.geekdo-images.com/images/pic2289049_t.jpg	2	99	30	t	2014	0	7.66666999999999987	-1	0	-1	t	f	f	f	f	f	f	f	
+2769	169015	Dungeons & Dragons: Attack Wing – White Dragon Expansion Pack	http://cf.geekdo-images.com/images/pic2491811.jpg	http://cf.geekdo-images.com/images/pic2491811_t.jpg	2	99	30	t	2015	0	7.51818000000000008	-1	0	-1	t	f	f	f	f	f	f	f	
+2770	161309	Dungeons & Dragons: Attack Wing – Wraith Expansion Pack	http://cf.geekdo-images.com/images/pic2289028.jpg	http://cf.geekdo-images.com/images/pic2289028_t.jpg	2	99	30	t	2014	0	7.53200000000000003	-1	0	-1	t	f	f	f	f	f	f	f	
+2771	59946	Dungeons & Dragons: Castle Ravenloft Board Game	http://cf.geekdo-images.com/images/pic660244.jpg	http://cf.geekdo-images.com/images/pic660244_t.jpg	1	5	60	f	2010	0	7.00769999999999982	468	2	7	f	f	f	t	f	f	f	f	
+2772	172220	Dungeons & Dragons: Temple of Elemental Evil Board Game	http://cf.geekdo-images.com/images/pic2496558.jpg	http://cf.geekdo-images.com/images/pic2496558_t.jpg	1	5	60	f	2015	0	7.6448400000000003	1018	2	7	t	f	f	f	f	f	f	f	
+2773	91872	Dungeons & Dragons: The Legend of Drizzt Board Game	http://cf.geekdo-images.com/images/pic994268.jpg	http://cf.geekdo-images.com/images/pic994268_t.jpg	1	5	60	f	2011	0	7.38361000000000001	328	2	7	f	f	f	t	f	f	f	f	
+2774	66356	Dungeons & Dragons: Wrath of Ashardalon Board Game	http://cf.geekdo-images.com/images/pic968280.jpg	http://cf.geekdo-images.com/images/pic968280_t.jpg	1	5	60	f	2011	0	7.25150000000000006	389	2	7	f	f	f	t	f	f	f	f	
+2775	72125	Eclipse	http://cf.geekdo-images.com/images/pic1974056.jpg	http://cf.geekdo-images.com/images/pic1974056_t.jpg	2	6	200	f	2011	0	8.0504200000000008	15	2	8	t	f	f	f	f	f	f	f	
+2776	125898	Eclipse: Rise of the Ancients	http://cf.geekdo-images.com/images/pic1340277.jpg	http://cf.geekdo-images.com/images/pic1340277_t.jpg	2	9	120	t	2012	0	8.5297199999999993	-1	0	-1	t	f	f	f	f	f	f	f	
+2777	104746	Eclipse: Supernova	http://cf.geekdo-images.com/images/pic2047781.jpg	http://cf.geekdo-images.com/images/pic2047781_t.jpg	2	6	120	t	2011	0	7.44714999999999971	-1	0	-1	t	f	f	f	f	f	f	f	
+2778	156180	Eggs and Empires	http://cf.geekdo-images.com/images/pic1954419.jpg	http://cf.geekdo-images.com/images/pic1954419_t.jpg	2	6	25	f	2014	0	6.92178000000000004	1597	3	8	t	f	f	f	f	f	f	f	
+2779	93	El Grande	http://cf.geekdo-images.com/images/pic180538.jpg	http://cf.geekdo-images.com/images/pic180538_t.jpg	2	5	120	f	1995	0	7.82233999999999963	31	1	7	t	f	f	f	f	f	f	f	
+2780	100423	Elder Sign	http://cf.geekdo-images.com/images/pic1236119.jpg	http://cf.geekdo-images.com/images/pic1236119_t.jpg	1	8	90	f	2011	0	7.00736999999999988	409	0	-1	t	f	f	f	f	f	f	f	
+2781	166679	Elder Sign: Gates of Arkham	http://cf.geekdo-images.com/images/pic2337383.jpg	http://cf.geekdo-images.com/images/pic2337383_t.jpg	1	8	90	t	2015	0	8.0975400000000004	-1	0	-1	t	f	f	f	f	f	f	f	
+2782	137479	Elder Sign: Unseen Forces	http://cf.geekdo-images.com/images/pic1639617.jpg	http://cf.geekdo-images.com/images/pic1639617_t.jpg	1	8	90	t	2013	0	7.68067000000000011	-1	0	-1	t	f	f	f	f	f	f	f	
+2783	146021	Eldritch Horror	http://cf.geekdo-images.com/images/pic1872452.jpg	http://cf.geekdo-images.com/images/pic1872452_t.jpg	1	8	240	f	2013	0	7.94486000000000026	29	1	8	t	f	f	f	f	f	f	f	
+2784	154842	Eldritch Horror: Forsaken Lore	http://cf.geekdo-images.com/images/pic1940723.jpg	http://cf.geekdo-images.com/images/pic1940723_t.jpg	1	8	180	t	2014	0	8.32790999999999926	-1	0	-1	t	f	f	f	f	f	f	f	
+2785	163968	Elysium	http://cf.geekdo-images.com/images/pic2837103.png	http://cf.geekdo-images.com/images/pic2837103_t.png	2	4	60	f	2015	0	7.44979000000000013	250	3	8	t	f	f	f	f	f	f	f	
+2786	68425	Eminent Domain	http://cf.geekdo-images.com/images/pic1160506.jpg	http://cf.geekdo-images.com/images/pic1160506_t.jpg	2	4	45	f	2011	0	7.15195999999999987	331	6	7	t	f	f	f	f	f	f	f	
+2787	86780	Eminent Domain: Bonus Planets	http://cf.geekdo-images.com/images/pic1910429.jpg	http://cf.geekdo-images.com/images/pic1910429_t.jpg	2	4	45	t	2011	0	7.31038000000000032	-1	0	-1	t	f	f	f	f	f	f	f	
+2788	136313	Eminent Domain: Escalation	http://cf.geekdo-images.com/images/pic1613196.jpg	http://cf.geekdo-images.com/images/pic1613196_t.jpg	2	5	60	t	2014	0	7.95891999999999999	-1	0	-1	t	f	f	f	f	f	f	f	
+2789	154137	Eminent Domain: Escalation Bonus Pack	http://cf.geekdo-images.com/images/pic1914906.jpg	http://cf.geekdo-images.com/images/pic1914906_t.jpg	2	5	60	t	2013	0	7.46895000000000042	-1	0	-1	t	f	f	f	f	f	f	f	
+2790	128236	Escape: Illusions	http://cf.geekdo-images.com/images/pic1374177.jpg	http://cf.geekdo-images.com/images/pic1374177_t.jpg	1	6	10	t	2012	0	7.51712000000000025	-1	0	-1	t	f	f	f	f	f	f	f	
+2791	137405	Escape: Quest	http://cf.geekdo-images.com/images/pic1727702.jpg	http://cf.geekdo-images.com/images/pic1727702_t.jpg	1	5	10	t	2013	0	7.71203000000000038	-1	0	-1	t	f	f	f	f	f	f	f	
+2792	113294	Escape: The Curse of the Temple	http://cf.geekdo-images.com/images/pic1724684.jpg	http://cf.geekdo-images.com/images/pic1724684_t.jpg	1	5	10	f	2012	0	7.14637999999999973	305	2	7	t	f	f	f	f	f	f	f	
+2793	133848	Euphoria: Build a Better Dystopia	http://cf.geekdo-images.com/images/pic1851141.jpg	http://cf.geekdo-images.com/images/pic1851141_t.jpg	2	6	60	f	2013	0	7.39337999999999962	241	3	7	t	f	f	f	f	f	f	f	
+2794	155703	Evolution	http://cf.geekdo-images.com/images/pic2558560.jpg	http://cf.geekdo-images.com/images/pic2558560_t.jpg	2	6	70	f	2014	0	7.32357999999999976	286	2	7	f	f	f	t	f	f	f	f	
+2795	176173	Evolution: Flight	http://cf.geekdo-images.com/images/pic2558554.jpg	http://cf.geekdo-images.com/images/pic2558554_t.jpg	2	6	60	t	2015	0	7.47529000000000021	-1	0	-1	t	f	f	f	f	f	f	f	
+2796	172225	Exploding Kittens	http://cf.geekdo-images.com/images/pic2691976.png	http://cf.geekdo-images.com/images/pic2691976_t.png	2	5	15	f	2015	0	5.79443000000000019	4409	0	-1	t	f	f	f	f	f	f	f	
+2797	13823	Fairy Tale	http://cf.geekdo-images.com/images/pic2024738.jpg	http://cf.geekdo-images.com/images/pic2024738_t.jpg	2	5	30	f	2004	0	6.81313000000000013	575	3	7	t	f	f	f	f	f	f	f	
+2798	159675	Fields of Arle	http://cf.geekdo-images.com/images/pic2225968.png	http://cf.geekdo-images.com/images/pic2225968_t.png	1	2	120	f	2014	0	8.31005000000000038	64	2	8	t	f	f	f	f	f	f	f	
+2799	157354	Five Tribes	http://cf.geekdo-images.com/images/pic2055255.jpg	http://cf.geekdo-images.com/images/pic2055255_t.jpg	2	4	80	f	2014	0	7.84879999999999978	40	8	7	t	f	f	f	f	f	f	f	
+2800	176677	Five Tribes: The Artisans of Naqala	http://cf.geekdo-images.com/images/pic2496396.jpg	http://cf.geekdo-images.com/images/pic2496396_t.jpg	2	4	80	t	2015	0	8.20076000000000072	-1	0	-1	t	f	f	f	f	f	f	f	
+2801	100901	Flash Point: Fire Rescue	http://cf.geekdo-images.com/images/pic1129370.jpg	http://cf.geekdo-images.com/images/pic1129370_t.jpg	1	6	45	f	2011	0	7.32214999999999971	193	2	6	f	f	f	t	f	f	f	f	
+2802	126954	Flash Point: Fire Rescue – 2nd Story	http://cf.geekdo-images.com/images/pic2625250.jpg	http://cf.geekdo-images.com/images/pic2625250_t.jpg	1	6	45	t	2012	0	7.61908999999999992	-1	0	-1	f	f	f	t	f	f	f	f	
+2803	139766	Flash Point: Fire Rescue – Extreme Danger	http://cf.geekdo-images.com/images/pic2008476.jpg	http://cf.geekdo-images.com/images/pic2008476_t.jpg	1	6	45	t	2013	0	7.78920999999999975	-1	0	-1	f	f	f	t	f	f	f	f	
+2804	151566	Flash Point: Fire Rescue – Veteran and Rescue Dog	http://cf.geekdo-images.com/images/pic1861138.png	http://cf.geekdo-images.com/images/pic1861138_t.png	1	6	45	t	2013	0	7.58706999999999976	-1	0	-1	f	f	f	t	f	f	f	f	
+2805	136063	Forbidden Desert	http://cf.geekdo-images.com/images/pic1528722.jpg	http://cf.geekdo-images.com/images/pic1528722_t.jpg	2	5	45	f	2013	0	7.36136000000000035	176	2	7	t	f	f	f	f	f	f	f	
+2806	65244	Forbidden Island	http://cf.geekdo-images.com/images/pic646458.jpg	http://cf.geekdo-images.com/images/pic646458_t.jpg	2	4	30	f	2010	0	6.88588999999999984	461	1	6	f	f	f	t	f	f	f	f	
+2807	146221	Forge War	http://cf.geekdo-images.com/images/pic2296858.jpg	http://cf.geekdo-images.com/images/pic2296858_t.jpg	1	4	180	f	2015	0	7.58471999999999991	775	0	-1	f	f	f	t	f	f	f	f	
+2808	119506	Freedom: The Underground Railroad	http://cf.geekdo-images.com/images/pic1478723.jpg	http://cf.geekdo-images.com/images/pic1478723_t.jpg	1	4	120	f	2012	0	7.66788000000000025	279	0	-1	t	f	f	f	f	f	f	f	
+2809	66188	Fresco	http://cf.geekdo-images.com/images/pic714398.jpg	http://cf.geekdo-images.com/images/pic714398_t.jpg	2	4	60	f	2010	0	7.36043999999999965	191	2	8	t	f	f	f	f	f	f	f	
+2810	86048	Fresco: Expansion Module 7 – The Scrolls	http://cf.geekdo-images.com/images/pic1046431.jpg	http://cf.geekdo-images.com/images/pic1046431_t.jpg	2	4	45	t	2010	0	6.85252000000000017	-1	0	-1	t	f	f	f	f	f	f	f	
+2811	85925	Fresco: Expansion Modules 4, 5 and 6	http://cf.geekdo-images.com/images/pic1102113.jpg	http://cf.geekdo-images.com/images/pic1102113_t.jpg	2	4	60	t	2011	0	7.49014999999999986	-1	0	-1	t	f	f	f	f	f	f	f	
+2812	148289	Fresco: Expansion Modules 8, 9 and 10	http://cf.geekdo-images.com/images/pic1805672.jpg	http://cf.geekdo-images.com/images/pic1805672_t.jpg	2	4	90	t	2013	0	7.52202000000000037	-1	0	-1	t	f	f	f	f	f	f	f	
+2813	109140	Fresco: The Bishop's Favor	http://cf.geekdo-images.com/images/pic1102403.jpg	http://cf.geekdo-images.com/images/pic1102403_t.jpg	2	4	60	t	2011	0	6.98341000000000012	-1	0	-1	t	f	f	f	f	f	f	f	
+2814	43570	Friday	http://cf.geekdo-images.com/images/pic1513328.jpg	http://cf.geekdo-images.com/images/pic1513328_t.jpg	1	1	25	f	2011	0	7.26649999999999974	264	1	7	f	f	f	t	f	f	f	f	
+2815	163081	Galaxy of Trian	http://cf.geekdo-images.com/images/pic2217697.jpg	http://cf.geekdo-images.com/images/pic2217697_t.jpg	2	4	45	f	2014	0	6.95148999999999972	-1	1	7	t	f	f	f	f	f	f	f	
+2816	143693	Glass Road	http://cf.geekdo-images.com/images/pic2499302.jpg	http://cf.geekdo-images.com/images/pic2499302_t.jpg	1	4	75	f	2013	0	7.51949999999999985	167	1	7	t	f	f	f	f	f	f	f	
+2817	19857	Glory to Rome	http://cf.geekdo-images.com/images/pic1867932.jpg	http://cf.geekdo-images.com/images/pic1867932_t.jpg	2	5	60	f	2005	0	7.5106799999999998	111	7	8	t	f	f	f	f	f	f	f	
+2818	188	Go	http://cf.geekdo-images.com/images/pic1728832.jpg	http://cf.geekdo-images.com/images/pic1728832_t.jpg	2	2	90	f	-2200	0	7.69885000000000019	82	1	7	t	f	f	f	f	f	f	f	
+2819	164338	The Golden Ages	http://cf.geekdo-images.com/images/pic2551380.jpg	http://cf.geekdo-images.com/images/pic2551380_t.jpg	2	4	90	f	2014	0	7.42229000000000028	691	3	7	t	f	f	f	f	f	f	f	
+2820	182874	Grand Austria Hotel	http://cf.geekdo-images.com/images/pic2728138.jpg	http://cf.geekdo-images.com/images/pic2728138_t.jpg	2	4	120	f	2015	0	7.73892999999999986	330	1	7	t	f	f	f	f	f	f	f	
+2821	111417	The Great Heartland Hauling Co.	http://cf.geekdo-images.com/images/pic1350080.jpg	http://cf.geekdo-images.com/images/pic1350080_t.jpg	2	4	30	f	2013	0	7.02590000000000003	872	0	-1	f	f	f	t	f	f	f	f	
+2822	151247	Greed	http://cf.geekdo-images.com/images/pic1949247.jpg	http://cf.geekdo-images.com/images/pic1949247_t.jpg	2	5	30	f	2014	0	6.86878000000000011	1112	2	7	f	f	f	t	f	f	f	f	
+2823	98778	Hanabi	http://cf.geekdo-images.com/images/pic2007286.jpg	http://cf.geekdo-images.com/images/pic2007286_t.jpg	2	5	25	f	2010	0	7.28641999999999967	181	2	7	t	f	f	f	f	f	f	f	
+2824	154182	Helios	http://cf.geekdo-images.com/images/pic1928217.png	http://cf.geekdo-images.com/images/pic1928217_t.png	2	4	60	f	2014	0	6.90071000000000012	1152	1	7	f	f	f	t	f	f	f	f	
+2825	2655	Hive	http://cf.geekdo-images.com/images/pic791151.jpg	http://cf.geekdo-images.com/images/pic791151_t.jpg	2	2	20	f	2001	0	7.34332000000000029	158	2	6	t	f	f	f	f	f	f	f	
+2826	134253	Hostage Negotiator	http://cf.geekdo-images.com/images/pic2043737.jpg	http://cf.geekdo-images.com/images/pic2043737_t.jpg	1	1	20	f	2015	0	7.33917000000000019	962	0	-1	t	f	f	f	f	f	f	f	
+2827	119788	Hyperborea	http://cf.geekdo-images.com/images/pic2004236.jpg	http://cf.geekdo-images.com/images/pic2004236_t.jpg	2	6	90	f	2014	0	7.37601999999999958	437	3	8	t	f	f	f	f	f	f	f	
+2828	159087	I Say, Holmes! (Second Edition)	http://cf.geekdo-images.com/images/pic2014564.jpg	http://cf.geekdo-images.com/images/pic2014564_t.jpg	3	8	45	f	2014	0	5.85017000000000031	7893	0	-1	f	f	f	t	f	f	f	f	
+2829	154203	Imperial Settlers	http://cf.geekdo-images.com/images/pic2871265.jpg	http://cf.geekdo-images.com/images/pic2871265_t.jpg	1	4	90	f	2014	0	7.65289000000000019	87	5	8	t	f	f	f	f	f	f	f	
+2830	177739	Imperial Settlers: Atlanteans	http://cf.geekdo-images.com/images/pic2520742.jpg	http://cf.geekdo-images.com/images/pic2520742_t.jpg	1	5	90	t	2015	0	7.78486999999999973	-1	0	-1	t	f	f	f	f	f	f	f	
+2831	169075	Imperial Settlers: Why Can't We Be Friends	http://cf.geekdo-images.com/images/pic2305119.jpg	http://cf.geekdo-images.com/images/pic2305119_t.jpg	1	4	90	t	2014	0	7.85667999999999989	-1	0	-1	t	f	f	f	f	f	f	f	
+2832	156061	Imperialism: Road to Domination	http://cf.geekdo-images.com/images/pic2288154.jpg	http://cf.geekdo-images.com/images/pic2288154_t.jpg	2	4	90	f	2014	0	6.37073999999999963	4935	0	-1	f	f	f	t	f	f	f	f	
+2833	144239	Impulse	http://cf.geekdo-images.com/images/pic2008721.jpg	http://cf.geekdo-images.com/images/pic2008721_t.jpg	2	6	60	f	2013	0	7.05076999999999998	911	0	-1	f	f	f	t	f	f	f	f	
+2834	63888	Innovation	http://cf.geekdo-images.com/images/pic2966859.png	http://cf.geekdo-images.com/images/pic2966859_t.png	2	4	60	f	2010	0	7.26736999999999966	220	1	8	t	f	f	f	f	f	f	f	
+2835	92898	Innovation: Echoes of the Past	http://cf.geekdo-images.com/images/pic1159573.jpg	http://cf.geekdo-images.com/images/pic1159573_t.jpg	2	5	60	t	2011	0	7.66826000000000008	-1	0	-1	t	f	f	f	f	f	f	f	
+2836	174611	Ion: A Compound Building Game	http://cf.geekdo-images.com/images/pic2605116.png	http://cf.geekdo-images.com/images/pic2605116_t.png	2	7	40	f	2015	0	6.78659000000000034	5122	1	6	t	f	f	f	f	f	f	f	
+2837	176494	Isle of Skye: From Chieftain to King	http://cf.geekdo-images.com/images/pic2524838.jpg	http://cf.geekdo-images.com/images/pic2524838_t.jpg	2	5	60	f	2015	0	7.53014000000000028	251	3	7	t	f	f	f	f	f	f	f	
+2838	148949	Istanbul	http://cf.geekdo-images.com/images/pic1885326.jpg	http://cf.geekdo-images.com/images/pic1885326_t.jpg	2	5	60	f	2014	0	7.61978000000000044	94	3	7	f	f	f	t	f	f	f	f	
+2839	54043	Jaipur	http://cf.geekdo-images.com/images/pic725500.jpg	http://cf.geekdo-images.com/images/pic725500_t.jpg	2	2	30	f	2009	0	7.54122999999999966	97	5	8	t	f	f	f	f	f	f	f	
+2840	28023	Jamaica	http://cf.geekdo-images.com/images/pic1502119.jpg	http://cf.geekdo-images.com/images/pic1502119_t.jpg	2	6	60	f	2007	0	7.09971999999999959	371	3	7	t	f	f	f	f	f	f	f	
+2841	122515	Keyflower	http://cf.geekdo-images.com/images/pic2278942.jpg	http://cf.geekdo-images.com/images/pic2278942_t.jpg	2	6	120	f	2012	0	7.98336999999999986	24	5	9	t	f	f	f	f	f	f	f	
+2842	144058	Keyflower: The Farmers	http://cf.geekdo-images.com/images/pic1743806.jpg	http://cf.geekdo-images.com/images/pic1743806_t.jpg	2	6	120	t	2013	0	7.97370999999999963	-1	0	-1	t	f	f	f	f	f	f	f	
+2843	163572	Keyflower: The Merchants	http://cf.geekdo-images.com/images/pic2191035.jpg	http://cf.geekdo-images.com/images/pic2191035_t.jpg	2	6	90	t	2014	0	8.2138100000000005	-1	0	-1	t	f	f	f	f	f	f	f	
+2844	160499	King of New York	http://cf.geekdo-images.com/images/pic2407103.jpg	http://cf.geekdo-images.com/images/pic2407103_t.jpg	2	6	40	f	2014	0	7.31067999999999962	254	1	6	f	f	f	t	f	f	f	f	
+2845	70323	King of Tokyo	http://cf.geekdo-images.com/images/pic761434.jpg	http://cf.geekdo-images.com/images/pic761434_t.jpg	2	6	30	f	2011	0	7.34888999999999992	150	6	7	t	f	f	f	f	f	f	f	
+2846	147183	King of Tokyo: Halloween	http://cf.geekdo-images.com/images/pic1867831.jpg	http://cf.geekdo-images.com/images/pic1867831_t.jpg	2	6	30	t	2013	0	7.3211700000000004	-1	0	-1	t	f	f	f	f	f	f	f	
+2847	127067	King of Tokyo: Power Up!	http://cf.geekdo-images.com/images/pic1449032.jpg	http://cf.geekdo-images.com/images/pic1449032_t.jpg	2	6	30	t	2012	0	7.70587999999999962	-1	0	-1	t	f	f	f	f	f	f	f	
+2848	107529	Kingdom Builder	http://cf.geekdo-images.com/images/pic1152359.jpg	http://cf.geekdo-images.com/images/pic1152359_t.jpg	2	4	45	f	2011	0	7.04989000000000043	373	6	7	t	f	f	f	f	f	f	f	
+2849	137396	Kingdom Builder: Crossroads	http://cf.geekdo-images.com/images/pic1550248.jpg	http://cf.geekdo-images.com/images/pic1550248_t.jpg	2	5	45	t	2013	0	7.70260999999999996	-1	0	-1	t	f	f	f	f	f	f	f	
+2850	164205	King's Pouch	http://cf.geekdo-images.com/images/pic2209254.jpg	http://cf.geekdo-images.com/images/pic2209254_t.jpg	2	4	60	f	2014	0	6.82706999999999997	4005	1	6	f	f	f	t	f	f	f	f	
+2851	27162	Kingsburg	http://cf.geekdo-images.com/images/pic253057.jpg	http://cf.geekdo-images.com/images/pic253057_t.jpg	2	5	90	f	2007	0	7.24948000000000015	211	2	7	t	f	f	f	f	f	f	f	
+2852	39775	Kingsburg: To Forge a Realm	http://cf.geekdo-images.com/images/pic1196154.jpg	http://cf.geekdo-images.com/images/pic1196154_t.jpg	2	5	90	t	2009	0	7.91577000000000019	-1	0	-1	t	f	f	f	f	f	f	f	
+2853	35677	Le Havre	http://cf.geekdo-images.com/images/pic447994.jpg	http://cf.geekdo-images.com/images/pic447994_t.jpg	1	5	200	f	2008	0	7.95931000000000033	21	1	7	t	f	f	f	f	f	f	f	
+2854	129051	Le Havre: The Inland Port	http://cf.geekdo-images.com/images/pic1451680.jpg	http://cf.geekdo-images.com/images/pic1451680_t.jpg	2	2	30	f	2012	0	7.06125999999999987	642	2	7	t	f	f	f	f	f	f	f	
+2855	146652	Legendary Encounters: An Alien Deck Building Game	http://cf.geekdo-images.com/images/pic2225180.jpg	http://cf.geekdo-images.com/images/pic2225180_t.jpg	1	5	45	f	2014	0	7.95434000000000019	58	3	6	t	f	f	f	f	f	f	f	
+2856	127398	Legends of Andor	http://cf.geekdo-images.com/images/pic2606106.jpg	http://cf.geekdo-images.com/images/pic2606106_t.jpg	2	4	90	f	2012	0	7.35573000000000032	247	4	7	t	f	f	f	f	f	f	f	
+2857	146963	Let Them Eat Shrimp!	http://cf.geekdo-images.com/images/pic1906526.jpg	http://cf.geekdo-images.com/images/pic1906526_t.jpg	2	5	20	f	2014	0	6.82754999999999956	4926	1	7	f	f	f	t	f	f	f	f	
+2858	140620	Lewis & Clark	http://cf.geekdo-images.com/images/pic1902092.jpg	http://cf.geekdo-images.com/images/pic1902092_t.jpg	1	5	120	f	2013	0	7.65625	91	1	6	f	f	f	t	f	f	f	f	
+2859	146886	La Granja	http://cf.geekdo-images.com/images/pic2031777.jpg	http://cf.geekdo-images.com/images/pic2031777_t.jpg	1	4	120	f	2014	0	7.9133899999999997	89	4	7	t	f	f	f	f	f	f	f	
+2860	153213	Livestock Uprising	http://cf.geekdo-images.com/images/pic2232226.jpg	http://cf.geekdo-images.com/images/pic2232226_t.jpg	2	4	90	f	2014	0	6.94657999999999998	6834	0	-1	f	f	f	t	f	f	f	f	
+2861	65781	London	http://cf.geekdo-images.com/images/pic770317.jpg	http://cf.geekdo-images.com/images/pic770317_t.jpg	2	4	90	f	2010	0	7.42164999999999964	196	2	7	t	f	f	f	f	f	f	f	
+2862	823	Lord of the Rings	http://cf.geekdo-images.com/images/pic479124.jpg	http://cf.geekdo-images.com/images/pic479124_t.jpg	2	5	60	f	2001	0	6.80438999999999972	559	0	-1	f	f	f	t	f	f	f	f	
+2863	130912	The Lord of the Rings Dice Building Game	http://cf.geekdo-images.com/images/pic1624163.jpg	http://cf.geekdo-images.com/images/pic1624163_t.jpg	2	4	30	f	2013	0	5.79201000000000032	5319	1	6	f	f	f	t	f	f	f	f	
+2864	77423	The Lord of the Rings: The Card Game	http://cf.geekdo-images.com/images/pic906495.jpg	http://cf.geekdo-images.com/images/pic906495_t.jpg	1	4	60	f	2011	0	7.64470000000000027	83	39	9	t	f	f	f	f	f	f	f	
+2865	129480	The Lord of the Rings: The Card Game – Heirs of Númenor	http://cf.geekdo-images.com/images/pic1405987.jpg	http://cf.geekdo-images.com/images/pic1405987_t.jpg	1	2	60	t	2012	0	7.88762000000000008	-1	0	-1	t	f	f	f	f	f	f	f	
+2866	107933	The Lord of the Rings: The Card Game – Khazad-dûm	http://cf.geekdo-images.com/images/pic1097391.jpg	http://cf.geekdo-images.com/images/pic1097391_t.jpg	1	2	60	t	2011	0	7.94862000000000002	-1	0	-1	t	f	f	f	f	f	f	f	
+2867	142875	The Lord of the Rings: The Card Game – The Black Riders	http://cf.geekdo-images.com/images/pic1680705.jpg	http://cf.geekdo-images.com/images/pic1680705_t.jpg	1	2	60	t	2013	0	8.32499999999999929	-1	0	-1	t	f	f	f	f	f	f	f	
+2868	130715	The Lord of the Rings: The Card Game – The Hobbit: On the Doorstep	http://cf.geekdo-images.com/images/pic1534818.jpg	http://cf.geekdo-images.com/images/pic1534818_t.jpg	1	2	-1	t	2013	0	8.08367999999999931	-1	0	-1	t	f	f	f	f	f	f	f	
+2869	123695	The Lord of the Rings: The Card Game – The Hobbit: Over Hill and Under Hill	http://cf.geekdo-images.com/images/pic1324319.jpg	http://cf.geekdo-images.com/images/pic1324319_t.jpg	1	2	60	t	2012	0	7.87894999999999968	-1	0	-1	t	f	f	f	f	f	f	f	
+2870	164313	The Lord of the Rings: The Card Game – The Lost Realm	http://cf.geekdo-images.com/images/pic2387795.jpg	http://cf.geekdo-images.com/images/pic2387795_t.jpg	1	2	60	t	2015	0	8.51103999999999949	-1	0	-1	t	f	f	f	f	f	f	f	
+2871	147723	The Lord of the Rings: The Card Game – The Road Darkens	http://cf.geekdo-images.com/images/pic1940742.jpg	http://cf.geekdo-images.com/images/pic1940742_t.jpg	1	2	60	t	2014	0	8.37856999999999985	-1	0	-1	t	f	f	f	f	f	f	f	
+2872	164665	The Lord of the Rings: The Card Game – The Treason of Saruman	http://cf.geekdo-images.com/images/pic2355165.jpg	http://cf.geekdo-images.com/images/pic2355165_t.jpg	1	4	60	t	2015	0	8.47777999999999921	-1	0	-1	t	f	f	f	f	f	f	f	
+2873	146574	The Lord of the Rings: The Card Game – The Voice of Isengard	http://cf.geekdo-images.com/images/pic1854812.jpg	http://cf.geekdo-images.com/images/pic1854812_t.jpg	1	2	60	t	2014	0	8.04643000000000086	-1	0	-1	t	f	f	f	f	f	f	f	
+2874	18833	Lord of the Rings: The Confrontation	http://cf.geekdo-images.com/images/pic1680704.jpg	http://cf.geekdo-images.com/images/pic1680704_t.jpg	2	2	30	f	2013	0	7.53031000000000006	184	0	-1	f	f	t	f	f	f	f	f	
+2875	152510	The Lord of the Rings: The Return of the King Deck-Building Game	http://cf.geekdo-images.com/images/pic2454386.jpg	http://cf.geekdo-images.com/images/pic2454386_t.jpg	2	5	45	f	2014	0	7.3251299999999997	2860	1	7	f	f	f	t	f	f	f	f	
+2876	110327	Lords of Waterdeep	http://cf.geekdo-images.com/images/pic1116080.jpg	http://cf.geekdo-images.com/images/pic1116080_t.jpg	2	5	120	f	2012	0	7.80067999999999984	36	10	8	t	f	f	f	f	f	f	f	
+2877	134342	Lords of Waterdeep: Scoundrels of Skullport	http://cf.geekdo-images.com/images/pic1590236.jpg	http://cf.geekdo-images.com/images/pic1590236_t.jpg	2	6	60	t	2013	0	8.23597000000000001	-1	0	-1	t	f	f	f	f	f	f	f	
+2878	50	Lost Cities	http://cf.geekdo-images.com/images/pic2606107.jpg	http://cf.geekdo-images.com/images/pic2606107_t.jpg	2	2	30	f	1999	0	7.12575000000000003	278	5	8	t	f	f	f	f	f	f	f	
+2879	42487	Lost Cities: The Board Game	http://cf.geekdo-images.com/images/pic2606157.jpg	http://cf.geekdo-images.com/images/pic2606157_t.jpg	2	4	60	f	2008	0	6.84680999999999962	787	1	6	f	f	f	t	f	f	f	f	
+2880	158340	Lost Legacy: Flying Garden	http://cf.geekdo-images.com/images/pic1998163.jpg	http://cf.geekdo-images.com/images/pic1998163_t.jpg	2	4	10	f	2014	0	6.90826999999999991	1165	2	7	t	f	f	f	f	f	f	f	
+2881	158339	Lost Legacy: The Starship	http://cf.geekdo-images.com/images/pic1998162.jpg	http://cf.geekdo-images.com/images/pic1998162_t.jpg	2	4	10	f	2014	0	6.80616000000000021	953	2	7	t	f	f	f	f	f	f	f	
+2882	129622	Love Letter	http://cf.geekdo-images.com/images/pic1401448.jpg	http://cf.geekdo-images.com/images/pic1401448_t.jpg	2	4	20	f	2012	0	7.35874000000000006	140	6	7	t	f	f	f	f	f	f	f	
+2883	169611	Love Letter: The Hobbit – The Battle of the Five Armies	http://cf.geekdo-images.com/images/pic2293327.jpg	http://cf.geekdo-images.com/images/pic2293327_t.jpg	2	4	30	f	2015	0	7.27073999999999998	1150	0	-1	t	f	f	f	f	f	f	f	
+2884	143884	Machi Koro	http://cf.geekdo-images.com/images/pic1992476.jpg	http://cf.geekdo-images.com/images/pic1992476_t.jpg	2	4	30	f	2012	0	6.84185999999999961	524	6	6	f	f	f	t	f	f	f	f	
+2885	143789	Machi Koro: Harbor Expansion	http://cf.geekdo-images.com/images/pic2034049.jpg	http://cf.geekdo-images.com/images/pic2034049_t.jpg	2	5	40	t	2013	0	7.26015000000000033	-1	0	-1	t	f	f	f	f	f	f	f	
+2886	150930	Mad City	http://cf.geekdo-images.com/images/pic1867064.jpg	http://cf.geekdo-images.com/images/pic1867064_t.jpg	1	6	30	f	2014	0	6.31993999999999989	4305	2	6	t	f	f	f	f	f	f	f	
+2887	178140	Maelstrom: An Expansion for Captain's Wager	http://cf.geekdo-images.com/images/pic2530969.jpg	http://cf.geekdo-images.com/images/pic2530969_t.jpg	2	5	40	t	2015	0	6.68182000000000009	-1	0	-1	t	f	f	f	f	f	f	f	
+2888	96848	Mage Knight Board Game	http://cf.geekdo-images.com/images/pic1083380.jpg	http://cf.geekdo-images.com/images/pic1083380_t.jpg	1	4	150	f	2011	0	8.14658999999999978	10	3	8	t	f	f	f	f	f	f	f	
+2889	144763	Mage Knight Board Game: Krang Character Expansion	http://cf.geekdo-images.com/images/pic1883789.jpg	http://cf.geekdo-images.com/images/pic1883789_t.jpg	1	5	90	t	2013	0	8.10543000000000013	-1	0	-1	t	f	f	f	f	f	f	f	
+2890	130704	Mage Knight Board Game: The Lost Legion	http://cf.geekdo-images.com/images/pic1421682.jpg	http://cf.geekdo-images.com/images/pic1421682_t.jpg	1	5	240	t	2012	0	8.83239999999999981	-1	0	-1	t	f	f	f	f	f	f	f	
+2891	95613	Mammut	http://cf.geekdo-images.com/images/pic1154690.jpg	http://cf.geekdo-images.com/images/pic1154690_t.jpg	2	5	30	f	2011	0	6.41976000000000013	2583	1	6	f	f	f	t	f	f	f	f	
+2892	63628	The Manhattan Project	http://cf.geekdo-images.com/images/pic1222522.jpg	http://cf.geekdo-images.com/images/pic1222522_t.jpg	2	5	120	f	2012	0	7.52031000000000027	155	1	6	f	f	f	t	f	f	f	f	
+2893	108421	The Manhattan Project: Nations Expansion	http://cf.geekdo-images.com/images/pic1092706.jpg	http://cf.geekdo-images.com/images/pic1092706_t.jpg	2	5	120	t	2012	0	7.54769000000000023	-1	0	-1	f	f	f	t	f	f	f	f	
+2894	99875	Martian Dice	http://cf.geekdo-images.com/images/pic1516575.jpg	http://cf.geekdo-images.com/images/pic1516575_t.jpg	2	99	10	f	2011	0	6.38496000000000041	1483	2	6	t	f	f	f	f	f	f	f	
+2895	1261	Medina	http://cf.geekdo-images.com/images/pic580033.jpg	http://cf.geekdo-images.com/images/pic580033_t.jpg	3	4	60	f	2001	0	7.08792000000000044	553	0	-1	t	f	f	f	f	f	f	f	
+2896	10630	Memoir '44	http://cf.geekdo-images.com/images/pic43663.jpg	http://cf.geekdo-images.com/images/pic43663_t.jpg	2	2	60	f	2004	0	7.52271999999999963	103	1	7	t	f	f	f	f	f	f	f	
+2897	2955	Mexica	http://cf.geekdo-images.com/images/pic2470537.jpg	http://cf.geekdo-images.com/images/pic2470537_t.jpg	2	4	90	f	2002	0	7.1154200000000003	509	1	7	t	f	f	f	f	f	f	f	
+2898	124708	Mice and Mystics	http://cf.geekdo-images.com/images/pic1312072.jpg	http://cf.geekdo-images.com/images/pic1312072_t.jpg	1	4	120	f	2012	0	7.53486999999999973	131	6	7	t	f	f	f	f	f	f	f	
+2899	117914	Milestones	http://cf.geekdo-images.com/images/pic1336176.jpg	http://cf.geekdo-images.com/images/pic1336176_t.jpg	2	4	60	f	2012	0	6.60670000000000002	1699	0	-1	f	f	t	f	f	f	f	f	
+2900	176920	Mission: Red Planet (second edition)	http://cf.geekdo-images.com/images/pic2499748.jpg	http://cf.geekdo-images.com/images/pic2499748_t.jpg	2	6	90	f	2015	0	7.80511999999999961	249	1	7	t	f	f	f	f	f	f	f	
+2901	156546	Monikers	http://cf.geekdo-images.com/images/pic2357036.png	http://cf.geekdo-images.com/images/pic2357036_t.png	4	20	60	f	2015	0	7.89353000000000016	1113	1	7	t	f	f	f	f	f	f	f	
+2902	122298	Morels	http://cf.geekdo-images.com/images/pic1284667.jpg	http://cf.geekdo-images.com/images/pic1284667_t.jpg	2	2	30	f	2012	0	7.12994000000000039	450	1	8	f	f	f	t	f	f	f	f	
+2903	175199	Mottainai	http://cf.geekdo-images.com/images/pic2688214.jpg	http://cf.geekdo-images.com/images/pic2688214_t.jpg	2	5	30	f	2015	0	7.15353999999999957	759	1	7	t	f	f	f	f	f	f	f	
+2904	21763	Mr. Jack	http://cf.geekdo-images.com/images/pic156046.jpg	http://cf.geekdo-images.com/images/pic156046_t.jpg	2	2	30	f	2006	0	7.09916999999999998	325	0	-1	f	f	f	t	f	f	f	f	
+2905	30362	Mr. Jack Extension	http://cf.geekdo-images.com/images/pic263545.jpg	http://cf.geekdo-images.com/images/pic263545_t.jpg	2	2	30	t	2007	0	7.27064999999999984	-1	0	-1	f	f	f	t	f	f	f	f	
+2906	172381	My Village	http://cf.geekdo-images.com/images/pic2760567.jpg	http://cf.geekdo-images.com/images/pic2760567_t.jpg	2	4	90	f	2015	0	7.24357000000000006	1125	1	7	t	f	f	f	f	f	f	f	
+2907	133632	Mythotopia	http://cf.geekdo-images.com/images/pic2257592.jpg	http://cf.geekdo-images.com/images/pic2257592_t.jpg	2	4	120	f	2014	0	7.04832000000000036	1013	3	7	t	f	f	f	f	f	f	f	
+2908	126042	Nations	http://cf.geekdo-images.com/images/pic1591406.png	http://cf.geekdo-images.com/images/pic1591406_t.png	1	5	200	f	2013	0	7.80442999999999998	61	2	8	f	f	f	t	f	f	f	f	
+2909	157809	Nations: The Dice Game	http://cf.geekdo-images.com/images/pic1988890.jpg	http://cf.geekdo-images.com/images/pic1988890_t.jpg	1	4	40	f	2014	0	6.98543000000000003	665	1	7	t	f	f	f	f	f	f	f	
+2910	96007	The New Era	http://cf.geekdo-images.com/images/pic1106275.jpg	http://cf.geekdo-images.com/images/pic1106275_t.jpg	2	5	60	f	2011	0	7.69310000000000027	487	1	6	f	f	f	t	f	f	f	f	
+2911	174660	New York 1901	http://cf.geekdo-images.com/images/pic2515532.jpg	http://cf.geekdo-images.com/images/pic2515532_t.jpg	2	4	45	f	2015	0	7.07237000000000027	677	3	8	t	f	f	f	f	f	f	f	
+2912	12942	No Thanks!	http://cf.geekdo-images.com/images/pic2602161.jpg	http://cf.geekdo-images.com/images/pic2602161_t.jpg	3	5	20	f	2004	0	7.03938000000000041	353	1	-1	t	f	f	f	f	f	f	f	
+2913	176361	One Night Revolution	http://cf.geekdo-images.com/images/pic2513302.jpg	http://cf.geekdo-images.com/images/pic2513302_t.jpg	3	10	15	f	2015	0	6.46926000000000023	2205	5	7	t	f	f	f	f	f	f	f	
+2914	147949	One Night Ultimate Werewolf	http://cf.geekdo-images.com/images/pic1809823.jpg	http://cf.geekdo-images.com/images/pic1809823_t.jpg	3	10	10	f	2014	0	7.44632000000000005	159	0	-1	f	f	f	t	f	f	f	f	
+2915	163166	One Night Ultimate Werewolf - Daybreak	http://cf.geekdo-images.com/images/pic2225958.jpg	http://cf.geekdo-images.com/images/pic2225958_t.jpg	3	7	10	f	2015	0	7.68695000000000039	324	0	-1	f	f	f	t	f	f	f	f	
+2916	156336	Onirim	http://cf.geekdo-images.com/images/pic2257657.png	http://cf.geekdo-images.com/images/pic2257657_t.png	1	2	15	f	2014	0	7.2913199999999998	615	4	7	t	f	f	f	f	f	f	f	
+2917	164928	Orléans	http://cf.geekdo-images.com/images/pic2578828.png	http://cf.geekdo-images.com/images/pic2578828_t.png	2	4	90	f	2014	0	8.03289999999999971	45	3	8	t	f	f	f	f	f	f	f	
+2918	183682	Orléans: Invasion	http://cf.geekdo-images.com/images/pic2660026.jpg	http://cf.geekdo-images.com/images/pic2660026_t.jpg	1	5	120	t	2015	0	8.40121000000000073	-1	0	-1	t	f	f	f	f	f	f	f	
+2919	23953	Outside the Scope of BGG	http://cf.geekdo-images.com/images/pic193671.jpg	http://cf.geekdo-images.com/images/pic193671_t.jpg	-1	-1	-1	f	-1	0	6.75860000000000039	1907	0	-1	f	f	t	f	f	f	f	f	
+2920	30549	Pandemic	http://cf.geekdo-images.com/images/pic1534148.jpg	http://cf.geekdo-images.com/images/pic1534148_t.jpg	2	4	90	f	2008	0	7.66598999999999986	51	15	8	t	f	f	f	f	f	f	f	
+2921	161936	Pandemic Legacy: Season 1	http://cf.geekdo-images.com/images/pic2452831.png	http://cf.geekdo-images.com/images/pic2452831_t.png	2	4	60	f	2015	0	8.63846000000000025	1	22	10	t	f	f	f	f	f	f	f	
+2922	157789	Pandemic: Contagion	http://cf.geekdo-images.com/images/pic2037506.png	http://cf.geekdo-images.com/images/pic2037506_t.png	2	5	30	f	2014	0	6.56228000000000034	1382	1	7	f	f	f	t	f	f	f	f	
+2923	137136	Pandemic: In the Lab	http://cf.geekdo-images.com/images/pic1632485.jpg	http://cf.geekdo-images.com/images/pic1632485_t.jpg	1	6	60	t	2013	0	8.01983000000000068	-1	0	-1	t	f	f	f	f	f	f	f	
+2924	40849	Pandemic: On the Brink	http://cf.geekdo-images.com/images/pic1546621.jpg	http://cf.geekdo-images.com/images/pic1546621_t.jpg	2	5	45	t	2009	0	8.11899000000000015	-1	0	-1	t	f	f	f	f	f	f	f	
+2925	168703	Pandemic: State of Emergency	http://cf.geekdo-images.com/images/pic2297198.png	http://cf.geekdo-images.com/images/pic2297198_t.png	2	4	45	t	2015	0	7.73045000000000027	-1	0	-1	t	f	f	f	f	f	f	f	
+2926	150658	Pandemic: The Cure	http://cf.geekdo-images.com/images/pic2225998.jpg	http://cf.geekdo-images.com/images/pic2225998_t.jpg	2	5	30	f	2014	0	7.45157000000000025	219	3	7	t	f	f	f	f	f	f	f	
+2927	141572	Paperback	http://cf.geekdo-images.com/images/pic1991455.jpg	http://cf.geekdo-images.com/images/pic1991455_t.jpg	2	5	45	f	2014	0	7.44188999999999989	301	1	6	f	f	f	t	f	f	f	f	
+2928	163412	Patchwork	http://cf.geekdo-images.com/images/pic2270442.jpg	http://cf.geekdo-images.com/images/pic2270442_t.jpg	2	2	30	f	2014	0	7.88459000000000021	41	2	7	t	f	f	f	f	f	f	f	
+2929	133038	Pathfinder Adventure Card Game: Rise of the Runelords – Base Set	http://cf.geekdo-images.com/images/pic1775517.jpg	http://cf.geekdo-images.com/images/pic1775517_t.jpg	1	4	90	f	2013	0	7.44803999999999977	163	13	7	t	f	f	f	f	f	f	f	
+2930	139037	Pathfinder Adventure Card Game: Rise of the Runelords – Character Add-On Deck	http://cf.geekdo-images.com/images/pic1775530.jpg	http://cf.geekdo-images.com/images/pic1775530_t.jpg	1	6	90	t	2013	0	7.74242000000000008	-1	0	-1	t	f	f	f	f	f	f	f	
+2931	149261	Pathfinder Adventure Card Game: Rise of the Runelords – Fortress of the Stone Giants Adventure Deck 4	http://cf.geekdo-images.com/images/pic1968268.jpg	http://cf.geekdo-images.com/images/pic1968268_t.jpg	1	6	-1	t	2014	0	7.78744999999999976	-1	0	-1	t	f	f	f	f	f	f	f	
+2932	150074	Pathfinder Adventure Card Game: Rise of the Runelords – Sins of the Saviors Adventure Deck 5	http://cf.geekdo-images.com/images/pic2024979.jpg	http://cf.geekdo-images.com/images/pic2024979_t.jpg	1	6	90	t	2014	0	7.78549999999999986	-1	0	-1	t	f	f	f	f	f	f	f	
+2933	150798	Pathfinder Adventure Card Game: Rise of the Runelords – Spires of Xin-Shalast Adventure Deck 6	http://cf.geekdo-images.com/images/pic2081109.jpg	http://cf.geekdo-images.com/images/pic2081109_t.jpg	1	6	120	t	2014	0	7.84478000000000009	-1	0	-1	t	f	f	f	f	f	f	f	
+2934	144873	Pathfinder Adventure Card Game: Rise of the Runelords – The Hook Mountain Massacre Adventure Deck 3	http://cf.geekdo-images.com/images/pic1887335.jpg	http://cf.geekdo-images.com/images/pic1887335_t.jpg	1	6	90	t	2013	0	7.80698000000000025	-1	0	-1	t	f	f	f	f	f	f	f	
+2935	142423	Pathfinder Adventure Card Game: Rise of the Runelords – The Skinsaw Murders Adventure Deck 2	http://cf.geekdo-images.com/images/pic1829650.jpg	http://cf.geekdo-images.com/images/pic1829650_t.jpg	1	6	90	t	2013	0	7.74366000000000021	-1	0	-1	t	f	f	f	f	f	f	f	
+2936	157992	Pathfinder Adventure Card Game: Skull & Shackles – "Ranzak" Promo Character Card Set	http://cf.geekdo-images.com/images/pic1993904.jpg	http://cf.geekdo-images.com/images/pic1993904_t.jpg	1	4	90	t	2014	0	7.94237000000000037	-1	0	-1	f	f	f	t	f	f	f	f	
+2937	151007	Pathfinder Adventure Card Game: Skull & Shackles – Base Set	http://cf.geekdo-images.com/images/pic2268287.jpg	http://cf.geekdo-images.com/images/pic2268287_t.jpg	1	4	120	f	2014	0	7.66021999999999981	490	8	7	f	f	f	t	f	f	f	f	
+2938	151008	Pathfinder Adventure Card Game: Skull & Shackles – Character Add-On Deck	http://cf.geekdo-images.com/images/pic2268289.jpg	http://cf.geekdo-images.com/images/pic2268289_t.jpg	1	6	120	t	2014	0	8.06709000000000032	-1	0	-1	f	f	f	t	f	f	f	f	
+2939	157991	Pathfinder Adventure Card Game: Skull & Shackles Adventure Deck 2 – Raiders of the Fever Sea	http://cf.geekdo-images.com/images/pic2268290.jpg	http://cf.geekdo-images.com/images/pic2268290_t.jpg	1	6	90	t	2014	0	7.94296999999999986	-1	0	-1	f	f	f	t	f	f	f	f	
+2940	159038	Pathfinder Adventure Card Game: Skull & Shackles Adventure Deck 3 – Tempest Rising	http://cf.geekdo-images.com/images/pic2352745.jpg	http://cf.geekdo-images.com/images/pic2352745_t.jpg	1	6	90	t	2014	0	7.95624999999999982	-1	0	-1	f	f	f	t	f	f	f	f	
+2941	160589	Pathfinder Adventure Card Game: Skull & Shackles Adventure Deck 4 –  Island of Empty Eyes	http://cf.geekdo-images.com/images/pic2352729.jpg	http://cf.geekdo-images.com/images/pic2352729_t.jpg	1	6	90	t	2014	0	7.93858999999999959	-1	0	-1	f	f	f	t	f	f	f	f	
+2942	169416	Pathfinder Adventure Card Game: Wrath of the Righteous – Base Set	http://cf.geekdo-images.com/images/pic2564484.jpg	http://cf.geekdo-images.com/images/pic2564484_t.jpg	1	4	120	f	2015	0	7.89515999999999973	1328	3	7	t	f	f	f	f	f	f	f	
+2943	170960	Pathfinder Adventure Card Game: Wrath of the Righteous – Character Add-On Deck	http://cf.geekdo-images.com/images/pic2551476.jpg	http://cf.geekdo-images.com/images/pic2551476_t.jpg	1	4	-1	t	2015	0	8.1940299999999997	-1	0	-1	t	f	f	f	f	f	f	f	
+2944	166298	Peptide: A Protein Building Game	http://cf.geekdo-images.com/images/pic2614392.png	http://cf.geekdo-images.com/images/pic2614392_t.png	2	6	40	f	2014	0	7.04687999999999981	6537	0	-1	f	t	f	f	f	f	f	f	
+2945	2651	Power Grid	http://cf.geekdo-images.com/images/pic173153.jpg	http://cf.geekdo-images.com/images/pic173153_t.jpg	2	6	120	f	2004	0	7.97355999999999998	16	0	-1	f	f	f	t	f	f	f	f	
+2946	155873	Power Grid	http://cf.geekdo-images.com/images/pic2056160.jpg	http://cf.geekdo-images.com/images/pic2056160_t.jpg	2	6	120	f	2014	0	8.21293999999999969	179	1	7	t	f	f	f	f	f	f	f	
+2947	19319	Power Grid: France/Italy	http://cf.geekdo-images.com/images/pic1553323.jpg	http://cf.geekdo-images.com/images/pic1553323_t.jpg	2	6	120	t	2005	0	7.96501999999999999	-1	0	-1	f	f	f	t	f	f	f	f	
+2948	108667	Power Grid: The Robots	http://cf.geekdo-images.com/images/pic1103946.jpg	http://cf.geekdo-images.com/images/pic1103946_t.jpg	2	5	120	t	2011	0	7.19177	-1	0	-1	t	f	f	f	f	f	f	f	
+2949	159375	Prime Climb	http://cf.geekdo-images.com/images/pic2326262.png	http://cf.geekdo-images.com/images/pic2326262_t.png	2	4	45	f	2014	0	6.87143000000000015	7474	0	-1	f	f	f	t	f	f	f	f	
+2950	8095	Prophecy	http://cf.geekdo-images.com/images/pic1919190.jpg	http://cf.geekdo-images.com/images/pic1919190_t.jpg	2	5	180	f	2014	0	6.71028999999999964	1095	0	-1	f	f	f	t	f	f	f	f	
+2951	145203	Prosperity	http://cf.geekdo-images.com/images/pic1717367.jpg	http://cf.geekdo-images.com/images/pic1717367_t.jpg	2	4	60	f	2013	0	6.81815999999999978	1273	1	6	f	f	f	t	f	f	f	f	
+2952	3076	Puerto Rico	http://cf.geekdo-images.com/images/pic158548.jpg	http://cf.geekdo-images.com/images/pic158548_t.jpg	2	5	150	f	2002	0	8.12214999999999954	6	1	7	t	f	f	f	f	f	f	f	
+2953	12382	Puerto Rico: Expansion I – New Buildings	http://cf.geekdo-images.com/images/pic182535.jpg	http://cf.geekdo-images.com/images/pic182535_t.jpg	2	5	90	t	2004	0	7.54947999999999997	-1	0	-1	t	f	f	f	f	f	f	f	
+2954	176396	Quadropolis	http://cf.geekdo-images.com/images/pic2840020.jpg	http://cf.geekdo-images.com/images/pic2840020_t.jpg	2	4	60	f	2016	0	7.64308000000000032	431	2	8	t	f	f	f	f	f	f	f	
+2955	172547	Queen's Architect	http://cf.geekdo-images.com/images/pic2448516.jpg	http://cf.geekdo-images.com/images/pic2448516_t.jpg	2	4	60	f	2015	0	7.06198999999999977	1542	1	7	t	f	f	f	f	f	f	f	
+2956	25669	Qwirkle	http://cf.geekdo-images.com/images/pic309353.jpg	http://cf.geekdo-images.com/images/pic309353_t.jpg	2	4	45	f	2006	0	6.83584000000000014	551	4	8	t	f	f	f	f	f	f	f	
+2957	35503	Ra: The Dice Game	http://cf.geekdo-images.com/images/pic533845.jpg	http://cf.geekdo-images.com/images/pic533845_t.jpg	2	4	45	f	2009	0	6.75129000000000001	909	1	6	f	f	f	t	f	f	f	f	
+2958	28143	Race for the Galaxy	http://cf.geekdo-images.com/images/pic236327.jpg	http://cf.geekdo-images.com/images/pic236327_t.jpg	2	4	60	f	2007	0	7.78481999999999985	32	24	8	t	f	f	f	f	f	f	f	
+2959	92932	Race for the Galaxy: Alien Artifacts	http://cf.geekdo-images.com/images/pic1839311.jpg	http://cf.geekdo-images.com/images/pic1839311_t.jpg	2	5	45	t	2013	0	7.5602999999999998	-1	0	-1	t	f	f	f	f	f	f	f	
+2960	40210	Race for the Galaxy: Rebel vs Imperium	http://cf.geekdo-images.com/images/pic445501.jpg	http://cf.geekdo-images.com/images/pic445501_t.jpg	1	6	60	t	2009	0	7.96448999999999963	-1	0	-1	t	f	f	f	f	f	f	f	
+2961	34499	Race for the Galaxy: The Gathering Storm	http://cf.geekdo-images.com/images/pic376993.jpg	http://cf.geekdo-images.com/images/pic376993_t.jpg	1	5	60	t	2008	0	8.08514000000000088	-1	0	-1	t	f	f	f	f	f	f	f	
+2962	161599	Race for the Galaxy: Xeno Invasion	http://cf.geekdo-images.com/images/pic2682884.jpg	http://cf.geekdo-images.com/images/pic2682884_t.jpg	2	5	-1	t	2015	0	8.08070999999999984	-1	0	8	t	f	f	f	f	f	f	f	
+2963	30450	Railways of Europe	http://cf.geekdo-images.com/images/pic787500.jpg	http://cf.geekdo-images.com/images/pic787500_t.jpg	2	5	120	t	2008	0	8.10717999999999961	-1	0	-1	t	f	f	f	f	f	f	f	
+2964	17133	Railways of the World	http://cf.geekdo-images.com/images/pic445850.jpg	http://cf.geekdo-images.com/images/pic445850_t.jpg	2	6	120	f	2005	0	7.70866000000000007	70	1	7	f	f	f	t	f	f	f	f	
+2965	99692	Railways of the World: Event Deck	http://cf.geekdo-images.com/images/pic2845787.jpg	http://cf.geekdo-images.com/images/pic2845787_t.jpg	2	6	120	t	2011	0	7.40334999999999965	-1	0	-1	t	f	f	f	f	f	f	f	
+2966	41114	The Resistance	http://cf.geekdo-images.com/images/pic2576459.jpg	http://cf.geekdo-images.com/images/pic2576459_t.jpg	5	10	30	f	2009	0	7.4751000000000003	108	7	8	t	f	f	f	f	f	f	f	
+2967	128882	The Resistance: Avalon	http://cf.geekdo-images.com/images/pic1398895.jpg	http://cf.geekdo-images.com/images/pic1398895_t.jpg	5	10	30	f	2012	0	7.78488000000000024	47	0	-1	f	f	f	t	f	f	f	f	
+2968	163322	The Resistance: Hidden Agenda & Hostile Intent	http://cf.geekdo-images.com/images/pic2243281.png	http://cf.geekdo-images.com/images/pic2243281_t.png	5	10	30	t	2014	0	7.75386000000000042	-1	0	-1	t	f	f	f	f	f	f	f	
+2969	66056	The Rivals for Catan	http://cf.geekdo-images.com/images/pic850850.jpg	http://cf.geekdo-images.com/images/pic850850_t.jpg	2	2	45	f	2010	0	7.11340000000000039	503	10	8	t	f	f	f	f	f	f	f	
+2970	93401	The Rivals for Catan: Age of Darkness	http://cf.geekdo-images.com/images/pic1101867.jpg	http://cf.geekdo-images.com/images/pic1101867_t.jpg	2	2	75	t	2011	0	7.6532	-1	0	-1	t	f	f	f	f	f	f	f	
+2971	127437	The Rivals for Catan: Age of Enlightenment	http://cf.geekdo-images.com/images/pic1447247.jpg	http://cf.geekdo-images.com/images/pic1447247_t.jpg	2	2	75	t	2012	0	7.77195999999999998	-1	0	-1	t	f	f	f	f	f	f	f	
+2972	121921	Robinson Crusoe: Adventures on the Cursed Island	http://cf.geekdo-images.com/images/pic1413154.jpg	http://cf.geekdo-images.com/images/pic1413154_t.jpg	1	4	180	f	2012	0	8.0475999999999992	18	2	7	t	f	f	f	f	f	f	f	
+2973	144722	Robinson Crusoe: Adventures on the Cursed Island – Voyage of the Beagle (Vol. 1)	http://cf.geekdo-images.com/images/pic1997048.jpg	http://cf.geekdo-images.com/images/pic1997048_t.jpg	1	4	120	t	2013	0	8.51154999999999973	-1	0	-1	t	f	f	f	f	f	f	f	
+2974	129090	Roll For It!	http://cf.geekdo-images.com/images/pic1638562.png	http://cf.geekdo-images.com/images/pic1638562_t.png	2	4	30	f	2011	0	6.22585999999999995	2368	2	6	t	f	f	f	f	f	f	f	
+2975	132531	Roll for the Galaxy	http://cf.geekdo-images.com/images/pic1473629.jpg	http://cf.geekdo-images.com/images/pic1473629_t.jpg	2	5	45	f	2014	0	7.90653000000000006	35	8	8	t	f	f	f	f	f	f	f	
+2976	175754	Roll for the Galaxy: Ambition	http://cf.geekdo-images.com/images/pic2700805.jpg	http://cf.geekdo-images.com/images/pic2700805_t.jpg	2	5	60	t	2015	0	8.25360000000000049	-1	0	-1	t	f	f	f	f	f	f	f	
+2977	37380	Roll Through the Ages: The Bronze Age	http://cf.geekdo-images.com/images/pic986758.jpg	http://cf.geekdo-images.com/images/pic986758_t.jpg	1	4	45	f	2008	0	6.93137000000000025	443	2	7	f	f	f	t	f	f	f	f	
+2978	150926	Roll Through the Ages: The Iron Age	http://cf.geekdo-images.com/images/pic1840147.jpg	http://cf.geekdo-images.com/images/pic1840147_t.jpg	1	4	60	f	2014	0	6.79847000000000001	1730	2	7	t	f	f	f	f	f	f	f	
+2979	143701	Romance of the Nine Empires	http://cf.geekdo-images.com/images/pic1683905.jpg	http://cf.geekdo-images.com/images/pic1683905_t.jpg	2	5	45	f	2013	0	6.42154999999999987	5829	0	-1	f	f	f	t	f	f	f	f	
+2980	89910	Run, Fight, or Die!	http://cf.geekdo-images.com/images/pic2039968.jpg	http://cf.geekdo-images.com/images/pic2039968_t.jpg	1	4	40	f	2014	0	7.11036000000000001	991	1	6	f	f	f	t	f	f	f	f	
+2981	144733	Russian Railroads	http://cf.geekdo-images.com/images/pic1772936.jpg	http://cf.geekdo-images.com/images/pic1772936_t.jpg	2	4	120	f	2013	0	7.84565999999999963	50	1	7	t	f	f	f	f	f	f	f	
+2982	9220	Saboteur	http://cf.geekdo-images.com/images/pic2602139.jpg	http://cf.geekdo-images.com/images/pic2602139_t.jpg	3	10	30	f	2004	0	6.66002000000000027	710	1	6	t	f	f	f	f	f	f	f	
+2983	91072	Saboteur 2	http://cf.geekdo-images.com/images/pic2602154.jpg	http://cf.geekdo-images.com/images/pic2602154_t.jpg	2	12	45	t	2011	0	7.05642999999999976	-1	0	-1	t	f	f	f	f	f	f	f	
+2984	141736	Sail to India	http://cf.geekdo-images.com/images/pic1756958.jpg	http://cf.geekdo-images.com/images/pic1756958_t.jpg	3	4	60	f	2013	0	6.86043000000000003	899	2	6	t	f	f	f	f	f	f	f	
+2985	3	Samurai	http://cf.geekdo-images.com/images/pic2571921.png	http://cf.geekdo-images.com/images/pic2571921_t.png	2	4	60	f	2015	0	7.43871000000000038	135	1	7	t	f	f	f	f	f	f	f	
+2986	145659	Scoville	http://cf.geekdo-images.com/images/pic1903464.jpg	http://cf.geekdo-images.com/images/pic1903464_t.jpg	2	6	90	f	2014	0	7.25863999999999976	497	1	7	t	f	f	f	f	f	f	f	
+2987	24068	Shadow Hunters	http://cf.geekdo-images.com/images/pic1215982.jpg	http://cf.geekdo-images.com/images/pic1215982_t.jpg	4	8	45	f	2005	0	6.86923999999999957	564	4	6	t	f	f	f	f	f	f	f	
+2988	112092	Shadowrift	http://cf.geekdo-images.com/images/pic2570089.jpg	http://cf.geekdo-images.com/images/pic2570089_t.jpg	1	6	120	f	2012	0	7.14161000000000001	1422	0	-1	t	f	f	f	f	f	f	f	
+2989	153435	Shadowrift: Archfiends	http://cf.geekdo-images.com/images/pic1903394.jpg	http://cf.geekdo-images.com/images/pic1903394_t.jpg	2	6	45	t	2015	0	7.69167000000000023	-1	0	-1	t	f	f	f	f	f	f	f	
+2990	135382	Shadowrun: Crossfire	http://cf.geekdo-images.com/images/pic2060466.jpg	http://cf.geekdo-images.com/images/pic2060466_t.jpg	1	4	60	f	2014	0	7.33229000000000042	506	1	6	f	f	f	t	f	f	f	f	
+2991	157969	Sheriff of Nottingham	http://cf.geekdo-images.com/images/pic2075830.jpg	http://cf.geekdo-images.com/images/pic2075830_t.jpg	3	5	60	f	2014	0	7.45854000000000017	138	3	8	t	f	f	f	f	f	f	f	
+2992	2511	Sherlock Holmes Consulting Detective	http://cf.geekdo-images.com/images/pic1977064.jpg	http://cf.geekdo-images.com/images/pic1977064_t.jpg	1	8	120	f	1981	0	7.83908000000000005	56	0	-1	t	f	f	f	f	f	f	f	
+2993	153737	Ships	http://cf.geekdo-images.com/images/pic2721731.jpg	http://cf.geekdo-images.com/images/pic2721731_t.jpg	2	4	120	f	2015	0	7.09647999999999968	1356	0	-1	f	t	f	f	f	f	f	f	
+2994	177678	Signorie	http://cf.geekdo-images.com/images/pic2684003.jpg	http://cf.geekdo-images.com/images/pic2684003_t.jpg	2	4	120	f	2015	0	7.64909000000000017	716	1	7	t	f	f	f	f	f	f	f	
+2995	8217	San Juan	http://cf.geekdo-images.com/images/pic174174.jpg	http://cf.geekdo-images.com/images/pic174174_t.jpg	2	4	60	f	2004	0	7.30670000000000019	174	3	8	t	f	f	f	f	f	f	f	
+2996	122522	Smash Up	http://cf.geekdo-images.com/images/pic1269874.jpg	http://cf.geekdo-images.com/images/pic1269874_t.jpg	2	4	45	f	2012	0	6.94259000000000004	463	1	6	t	f	f	f	f	f	f	f	
+2997	160018	Smash Up: Monster Smash	http://cf.geekdo-images.com/images/pic2038798.jpg	http://cf.geekdo-images.com/images/pic2038798_t.jpg	2	4	45	f	2014	0	7.59562999999999988	459	0	-1	t	f	f	f	f	f	f	f	
+2998	151004	Smash Up: Science Fiction Double Feature	http://cf.geekdo-images.com/images/pic1857661.jpg	http://cf.geekdo-images.com/images/pic1857661_t.jpg	2	4	45	f	2014	0	7.51970999999999989	376	0	-1	t	f	f	f	f	f	f	f	
+2999	157427	Smash Up: The Big Geeky Box	http://cf.geekdo-images.com/images/pic1987355.jpg	http://cf.geekdo-images.com/images/pic1987355_t.jpg	2	4	-1	t	2014	0	7.4706999999999999	-1	0	-1	t	f	f	f	f	f	f	f	
+3000	38054	Snow Tails	http://cf.geekdo-images.com/images/pic2574022.png	http://cf.geekdo-images.com/images/pic2574022_t.png	2	5	60	f	2008	0	6.99138000000000037	481	1	6	t	f	f	f	f	f	f	f	
+3001	38453	Space Alert	http://cf.geekdo-images.com/images/pic384313.jpg	http://cf.geekdo-images.com/images/pic384313_t.jpg	1	5	30	f	2008	0	7.56557999999999975	100	1	6	f	f	f	t	f	f	f	f	
+3002	165838	Space Hulk (fourth edition)	http://cf.geekdo-images.com/images/pic2245229.jpg	http://cf.geekdo-images.com/images/pic2245229_t.jpg	2	2	60	f	2014	0	8.08700999999999937	590	0	-1	f	t	f	f	f	f	f	f	
+3003	71721	Space Hulk: Death Angel – The Card Game	http://cf.geekdo-images.com/images/pic1873572.jpg	http://cf.geekdo-images.com/images/pic1873572_t.jpg	1	6	30	f	2010	0	6.96989999999999998	452	1	7	t	f	f	f	f	f	f	f	
+3004	94964	Space Hulk: Death Angel – The Card Game – Mission Pack 1	http://cf.geekdo-images.com/images/pic1431153.jpg	http://cf.geekdo-images.com/images/pic1431153_t.jpg	1	6	30	t	2011	0	7.33122000000000007	-1	0	-1	t	f	f	f	f	f	f	f	
+3005	94963	Space Hulk: Death Angel – The Card Game: Space Marine Pack 1	http://cf.geekdo-images.com/images/pic1431151.jpg	http://cf.geekdo-images.com/images/pic1431151_t.jpg	1	6	30	t	2011	0	7.34646000000000043	-1	0	-1	t	f	f	f	f	f	f	f	
+3006	115584	Space Hulk: Death Angel – The Card Game: Tyranid Enemy Pack	http://cf.geekdo-images.com/images/pic1331840.jpg	http://cf.geekdo-images.com/images/pic1331840_t.jpg	1	6	30	t	2011	0	7.49432999999999971	-1	0	-1	t	f	f	f	f	f	f	f	
+3007	148228	Splendor	http://cf.geekdo-images.com/images/pic1904079.jpg	http://cf.geekdo-images.com/images/pic1904079_t.jpg	2	4	30	f	2014	0	7.58002999999999982	80	6	6	t	f	f	f	f	f	f	f	
+3008	166384	Spyfall	http://cf.geekdo-images.com/images/pic2453926.jpg	http://cf.geekdo-images.com/images/pic2453926_t.jpg	3	8	15	f	2014	0	7.34881999999999991	215	0	-1	f	f	t	f	f	f	f	f	
+3009	137269	Spyrium	http://cf.geekdo-images.com/images/pic1808509.jpg	http://cf.geekdo-images.com/images/pic1808509_t.jpg	2	5	75	f	2013	0	7.20891999999999999	365	1	6	f	f	f	t	f	f	f	f	
+3010	147020	Star Realms	http://cf.geekdo-images.com/images/pic1903816.jpg	http://cf.geekdo-images.com/images/pic1903816_t.jpg	2	2	20	f	2014	0	7.68888999999999978	66	8	8	t	f	f	f	f	f	f	f	
+3011	166702	Star Realms: Crisis – Bases & Battleships	http://cf.geekdo-images.com/images/pic2255562.png	http://cf.geekdo-images.com/images/pic2255562_t.png	2	6	-1	t	2014	0	7.77214999999999989	-1	0	-1	t	f	f	f	f	f	f	f	
+3012	166707	Star Realms: Crisis – Events	http://cf.geekdo-images.com/images/pic2255575.png	http://cf.geekdo-images.com/images/pic2255575_t.png	2	6	-1	t	2014	0	7.16818000000000044	-1	0	-1	t	f	f	f	f	f	f	f	
+3013	166704	Star Realms: Crisis – Fleets & Fortresses	http://cf.geekdo-images.com/images/pic2255568.png	http://cf.geekdo-images.com/images/pic2255568_t.png	2	6	-1	t	2014	0	7.76034999999999986	-1	0	-1	t	f	f	f	f	f	f	f	
+3014	166708	Star Realms: Crisis – Heroes	http://cf.geekdo-images.com/images/pic2255577.png	http://cf.geekdo-images.com/images/pic2255577_t.png	2	6	-1	t	2014	0	7.09837999999999969	-1	0	-1	t	f	f	f	f	f	f	f	
+3015	98242	Star Trek Deck Building Game: The Next Generation	http://cf.geekdo-images.com/images/pic1158378.jpg	http://cf.geekdo-images.com/images/pic1158378_t.jpg	2	5	60	f	2011	0	6.58513000000000037	1692	9	8	t	f	f	f	f	f	f	f	
+3016	111502	Star Trek Deck Building Game: The Next Generation – The Next Phase	http://cf.geekdo-images.com/images/pic1903299.jpg	http://cf.geekdo-images.com/images/pic1903299_t.jpg	2	4	90	f	2012	0	6.9214500000000001	1960	0	8	t	f	f	f	f	f	f	f	
+3017	122690	Star Trek Deck Building Game: The Original Series	http://cf.geekdo-images.com/images/pic1537370.jpg	http://cf.geekdo-images.com/images/pic1537370_t.jpg	2	4	90	f	2012	0	6.82216999999999985	2037	1	7	t	f	f	f	f	f	f	f	
+3018	117985	Star Trek: Catan	http://cf.geekdo-images.com/images/pic1365413.jpg	http://cf.geekdo-images.com/images/pic1365413_t.jpg	3	4	75	f	2012	0	7.11247000000000007	678	1	-1	f	f	f	f	f	f	f	f	
+3019	79131	Star Trek: Expeditions	http://cf.geekdo-images.com/images/pic1021598.jpg	http://cf.geekdo-images.com/images/pic1021598_t.jpg	1	4	60	f	2011	0	6.51729999999999965	1592	1	6	f	f	f	t	f	f	f	f	
+3020	104413	Star Trek: Expeditions – Expansion Set	http://cf.geekdo-images.com/images/pic1523049.jpg	http://cf.geekdo-images.com/images/pic1523049_t.jpg	1	5	60	t	2012	0	6.65847999999999995	-1	0	-1	f	f	f	t	f	f	f	f	
+3021	79127	Star Trek: Fleet Captains	http://cf.geekdo-images.com/images/pic1081488.jpg	http://cf.geekdo-images.com/images/pic1081488_t.jpg	2	4	75	f	2011	0	7.61406000000000027	270	1	8	t	f	f	f	f	f	f	f	
+3022	182340	Star Trek: Frontiers	http://cf.geekdo-images.com/images/pic3008535.jpg	http://cf.geekdo-images.com/images/pic3008535_t.jpg	1	4	120	f	2016	0	9	-1	0	-1	f	t	f	f	f	f	f	f	
+3023	171226	Starfighter	http://cf.geekdo-images.com/images/pic2628590.jpg	http://cf.geekdo-images.com/images/pic2628590_t.jpg	2	2	30	f	2015	0	7.40469000000000044	2274	0	-1	f	f	t	f	f	f	f	f	
+3024	161614	Stockpile	http://cf.geekdo-images.com/images/pic2537618.jpg	http://cf.geekdo-images.com/images/pic2537618_t.jpg	2	5	45	f	2015	0	7.71227000000000018	547	3	8	t	f	f	f	f	f	f	f	
+3025	34635	Stone Age	http://cf.geekdo-images.com/images/pic1632539.jpg	http://cf.geekdo-images.com/images/pic1632539_t.jpg	2	4	90	f	2008	0	7.64207000000000036	59	3	8	t	f	f	f	f	f	f	f	
+3026	179460	Stronghold (2nd edition)	http://cf.geekdo-images.com/images/pic2642989.jpg	http://cf.geekdo-images.com/images/pic2642989_t.jpg	2	2	90	f	2015	0	8.03067000000000064	1613	0	-1	t	f	f	f	f	f	f	f	
+3027	155173	Subdivision	http://cf.geekdo-images.com/images/pic1961853.jpg	http://cf.geekdo-images.com/images/pic1961853_t.jpg	1	4	45	f	2014	0	6.57643999999999984	1964	3	8	t	f	f	f	f	f	f	f	
+3028	123260	Suburbia	http://cf.geekdo-images.com/images/pic1418335.jpg	http://cf.geekdo-images.com/images/pic1418335_t.jpg	1	4	90	f	2012	0	7.68895000000000017	63	14	8	t	f	f	f	f	f	f	f	
+3029	145196	Suburbia Inc	http://cf.geekdo-images.com/images/pic1722753.jpg	http://cf.geekdo-images.com/images/pic1722753_t.jpg	1	4	90	t	2013	0	8.06564000000000014	-1	0	-1	t	f	f	f	f	f	f	f	
+3030	58281	Summoner Wars	http://cf.geekdo-images.com/images/pic2407328.jpg	http://cf.geekdo-images.com/images/pic2407328_t.jpg	2	4	60	f	2009	0	7.36516999999999999	276	1	8	t	f	f	f	f	f	f	f	
+3031	158889	Summoner Wars: Alliances Master Set	http://cf.geekdo-images.com/images/pic2045253.jpg	http://cf.geekdo-images.com/images/pic2045253_t.jpg	2	4	45	f	2015	0	8.48987999999999943	519	0	-1	t	f	f	f	f	f	f	f	
+3032	82423	Summoner Wars: Fallen Kingdom Faction Deck	http://cf.geekdo-images.com/images/pic891318.jpg	http://cf.geekdo-images.com/images/pic891318_t.jpg	2	4	30	t	2010	0	7.99406999999999979	-1	0	-1	t	f	f	f	f	f	f	f	
+3033	82420	Summoner Wars: Guild Dwarves vs Cave Goblins	http://cf.geekdo-images.com/images/pic1218282.jpg	http://cf.geekdo-images.com/images/pic1218282_t.jpg	2	4	30	f	2009	0	7.70645999999999987	280	0	-1	t	f	f	f	f	f	f	f	
+3034	93260	Summoner Wars: Master Set	http://cf.geekdo-images.com/images/pic923048.jpg	http://cf.geekdo-images.com/images/pic923048_t.jpg	2	4	30	f	2011	0	7.68278999999999979	85	0	-1	t	f	f	f	f	f	f	f	
+3035	113227	Summoner Wars: Mercenaries Faction Deck	http://cf.geekdo-images.com/images/pic1224444.jpg	http://cf.geekdo-images.com/images/pic1224444_t.jpg	2	4	30	t	2012	0	8.14738000000000007	-1	0	-1	t	f	f	f	f	f	f	f	
+3036	82421	Summoner Wars: Phoenix Elves vs Tundra Orcs	http://cf.geekdo-images.com/images/pic1222742.jpg	http://cf.geekdo-images.com/images/pic1222742_t.jpg	2	4	30	f	2009	0	7.64186999999999994	289	0	-1	t	f	f	f	f	f	f	f	
+3037	82422	Summoner Wars: Vanguards Faction Deck	http://cf.geekdo-images.com/images/pic1426692.jpg	http://cf.geekdo-images.com/images/pic1426692_t.jpg	2	4	30	t	2010	0	7.82183000000000028	-1	0	-1	t	f	f	f	f	f	f	f	
+3038	2653	Survive: Escape from Atlantis!	http://cf.geekdo-images.com/images/pic1300182.png	http://cf.geekdo-images.com/images/pic1300182_t.png	2	4	60	f	2012	0	7.3404499999999997	182	2	7	t	f	f	f	f	f	f	f	
+3039	96323	Survive: Escape from Atlantis! - 5-6 Player Mini Expansion	http://cf.geekdo-images.com/images/pic1586886.jpg	http://cf.geekdo-images.com/images/pic1586886_t.jpg	2	6	45	t	2011	0	7.39022000000000023	-1	0	-1	t	f	f	f	f	f	f	f	
+3040	138745	Survive: Escape from Atlantis! - Dolphins & Dive Dice Mini Extension	http://cf.geekdo-images.com/images/pic1586882.jpg	http://cf.geekdo-images.com/images/pic1586882_t.jpg	2	4	60	t	2013	0	7.1925100000000004	-1	0	-1	t	f	f	f	f	f	f	f	
+3041	177147	Survive: Space Attack!	http://cf.geekdo-images.com/images/pic2506676.jpg	http://cf.geekdo-images.com/images/pic2506676_t.jpg	2	4	60	f	2015	0	7.30187000000000008	3113	1	7	t	f	f	f	f	f	f	f	
+3042	133473	Sushi Go!	http://cf.geekdo-images.com/images/pic1900075.jpg	http://cf.geekdo-images.com/images/pic1900075_t.jpg	2	5	15	f	2013	0	7.16542999999999974	287	3	6	t	f	f	f	f	f	f	f	
+3043	146508	T.I.M.E Stories	http://cf.geekdo-images.com/images/pic2617634.png	http://cf.geekdo-images.com/images/pic2617634_t.png	2	4	90	f	2015	0	8.22724000000000011	27	5	8	t	f	f	f	f	f	f	f	
+3044	179820	Tail Feathers	http://cf.geekdo-images.com/images/pic2661822.jpg	http://cf.geekdo-images.com/images/pic2661822_t.jpg	2	4	90	f	2015	0	7.98650000000000038	2596	0	-1	f	t	f	f	f	f	f	f	
+3045	70919	Takenoko	http://cf.geekdo-images.com/images/pic1912529.jpg	http://cf.geekdo-images.com/images/pic1912529_t.jpg	2	4	45	f	2011	0	7.3620599999999996	162	5	8	t	f	f	f	f	f	f	f	
+3046	34119	Tales of the Arabian Nights	http://cf.geekdo-images.com/images/pic486114.jpg	http://cf.geekdo-images.com/images/pic486114_t.jpg	1	6	120	f	2009	0	7.29891999999999985	236	1	6	t	f	f	f	f	f	f	f	
+3047	118048	Targi	http://cf.geekdo-images.com/images/pic1629318.jpg	http://cf.geekdo-images.com/images/pic1629318_t.jpg	2	2	60	f	2012	0	7.60496999999999979	145	1	7	t	f	f	f	f	f	f	f	
+3048	164072	Tenka: Shogun Edition	http://cf.geekdo-images.com/images/pic2204892.jpg	http://cf.geekdo-images.com/images/pic2204892_t.jpg	3	8	45	f	2014	0	6.69167000000000023	-1	0	-1	f	f	f	t	f	f	f	f	
+3049	147242	A Terrible Time	http://cf.geekdo-images.com/images/pic2094046.jpg	http://cf.geekdo-images.com/images/pic2094046_t.jpg	4	16	45	f	2014	0	4.84999999999999964	-1	0	-1	f	f	f	t	f	f	f	f	
+3050	120677	Terra Mystica	http://cf.geekdo-images.com/images/pic1356616.jpg	http://cf.geekdo-images.com/images/pic1356616_t.jpg	2	5	150	f	2012	0	8.28603000000000023	3	4	8	t	f	f	f	f	f	f	f	
+3051	161317	Terra Mystica: Fire & Ice	http://cf.geekdo-images.com/images/pic2227159.png	http://cf.geekdo-images.com/images/pic2227159_t.png	2	5	100	t	2014	0	8.55733000000000033	-1	0	-1	t	f	f	f	f	f	f	f	
+3052	182028	Through the Ages: A New Story of Civilization	http://cf.geekdo-images.com/images/pic2663291.jpg	http://cf.geekdo-images.com/images/pic2663291_t.jpg	2	4	240	f	2015	0	9.01654000000000089	4	1	8	t	f	f	f	f	f	f	f	
+3053	25613	Through the Ages: A Story of Civilization	http://cf.geekdo-images.com/images/pic236169.jpg	http://cf.geekdo-images.com/images/pic236169_t.jpg	2	4	240	f	2006	0	8.16268999999999956	7	2	8	f	f	f	t	f	f	f	f	
+3054	122967	Thunderstone Advance: Caverns of Bane	http://cf.geekdo-images.com/images/pic1288215.jpg	http://cf.geekdo-images.com/images/pic1288215_t.jpg	1	5	45	t	2012	0	7.84802	-1	0	-1	t	f	f	f	f	f	f	f	
+3055	158727	Thunderstone Advance: Into the Abyss	http://cf.geekdo-images.com/images/pic2020116.jpg	http://cf.geekdo-images.com/images/pic2020116_t.jpg	1	5	60	t	2014	0	8.20701000000000036	-1	0	-1	t	f	f	f	f	f	f	f	
+3056	142961	Thunderstone Advance: Numenera	http://cf.geekdo-images.com/images/pic1683747.jpg	http://cf.geekdo-images.com/images/pic1683747_t.jpg	1	5	90	f	2013	0	7.61615999999999982	701	0	7	t	f	f	f	f	f	f	f	
+3057	131306	Thunderstone Advance: Root of Corruption	http://cf.geekdo-images.com/images/pic1437796.jpg	http://cf.geekdo-images.com/images/pic1437796_t.jpg	1	5	90	t	2012	0	7.86265999999999998	-1	0	-1	t	f	f	f	f	f	f	f	
+3058	116998	Thunderstone Advance: Towers of Ruin	http://cf.geekdo-images.com/images/pic1196537.jpg	http://cf.geekdo-images.com/images/pic1196537_t.jpg	1	5	90	f	2012	0	7.55410000000000004	195	12	6	t	f	f	f	f	f	f	f	
+3059	152765	Thunderstone Advance: Worlds Collide	http://cf.geekdo-images.com/images/pic1888624.jpg	http://cf.geekdo-images.com/images/pic1888624_t.jpg	1	5	60	f	2014	0	7.9929800000000002	746	0	-1	t	f	f	f	f	f	f	f	
+3060	9209	Ticket to Ride	http://cf.geekdo-images.com/images/pic38668.jpg	http://cf.geekdo-images.com/images/pic38668_t.jpg	2	5	60	f	2004	0	7.49699000000000026	99	22	9	t	f	f	f	f	f	f	f	
+3061	182078	Ticket to Ride Map Collection: Volume 5 – United Kingdom & Pennsylvania	http://cf.geekdo-images.com/images/pic2640876.jpg	http://cf.geekdo-images.com/images/pic2640876_t.jpg	2	5	75	t	2015	0	8.11857999999999969	-1	0	-1	t	f	f	f	f	f	f	f	
+3062	160069	Ticket to Ride: 10th Anniversary	http://cf.geekdo-images.com/images/pic1927856.jpg	http://cf.geekdo-images.com/images/pic1927856_t.jpg	2	5	60	f	2014	0	8.35169999999999924	-1	0	8	t	f	f	f	f	f	f	f	
+3063	106645	Ticket to Ride: India & Switzerland	http://cf.geekdo-images.com/images/pic1077595.jpg	http://cf.geekdo-images.com/images/pic1077595_t.jpg	2	4	60	t	2011	0	7.87786000000000008	-1	0	7	t	f	f	f	f	f	f	f	
+3064	31627	Ticket to Ride: Nordic Countries	http://cf.geekdo-images.com/images/pic369616.jpg	http://cf.geekdo-images.com/images/pic369616_t.jpg	2	3	60	f	2007	0	7.67241000000000017	92	0	7	t	f	f	f	f	f	f	f	
+3065	24439	Ticket to Ride: USA 1910	http://cf.geekdo-images.com/images/pic144599.jpg	http://cf.geekdo-images.com/images/pic144599_t.jpg	2	5	60	t	2006	0	8.02203000000000088	-1	0	-1	t	f	f	f	f	f	f	f	
+3066	176229	Tides of Time	http://cf.geekdo-images.com/images/pic2486726.jpg	http://cf.geekdo-images.com/images/pic2486726_t.jpg	2	2	20	f	2015	0	7.00765999999999956	643	1	7	t	f	f	f	f	f	f	f	
+3067	42	Tigris & Euphrates	http://cf.geekdo-images.com/images/pic2338267.jpg	http://cf.geekdo-images.com/images/pic2338267_t.jpg	2	4	90	f	2015	0	7.74741000000000035	44	1	7	t	f	f	f	f	f	f	f	
+3068	85256	Timeline: Inventions	http://cf.geekdo-images.com/images/pic1724657.jpg	http://cf.geekdo-images.com/images/pic1724657_t.jpg	2	8	15	f	2010	0	6.78444999999999965	717	1	6	t	f	f	f	f	f	f	f	
+3069	155708	Tiny Epic Defenders	http://cf.geekdo-images.com/images/pic2044766.jpg	http://cf.geekdo-images.com/images/pic2044766_t.jpg	1	4	30	f	2015	0	6.50729999999999986	1543	1	7	f	f	f	f	f	f	f	f	
+3070	123540	Tokaido	http://cf.geekdo-images.com/images/pic1293719.jpg	http://cf.geekdo-images.com/images/pic1293719_t.jpg	2	5	45	f	2012	0	7.06961999999999957	407	2	7	t	f	f	f	f	f	f	f	
+3071	144384	Tokaido: Crossroads	http://cf.geekdo-images.com/images/pic1717784.png	http://cf.geekdo-images.com/images/pic1717784_t.png	2	5	45	t	2013	0	7.51822000000000035	-1	0	-1	t	f	f	f	f	f	f	f	
+3072	124545	Town Center	http://cf.geekdo-images.com/images/pic1834531.jpg	http://cf.geekdo-images.com/images/pic1834531_t.jpg	2	4	30	f	2012	0	6.50495999999999963	2935	1	7	t	f	f	f	f	f	f	f	
+3073	148319	Tragedy Looper	http://cf.geekdo-images.com/images/pic2046290.png	http://cf.geekdo-images.com/images/pic2046290_t.png	2	4	120	f	2011	0	7.47091999999999956	403	2	7	f	f	f	t	f	f	f	f	
+3074	121408	Trains	http://cf.geekdo-images.com/images/pic1606346.jpg	http://cf.geekdo-images.com/images/pic1606346_t.jpg	2	4	45	f	2012	0	7.30621999999999971	268	8	8	t	f	f	f	f	f	f	f	
+3075	146629	Trains: Gen Con 2013	http://cf.geekdo-images.com/images/pic1752832.jpg	http://cf.geekdo-images.com/images/pic1752832_t.jpg	2	4	45	t	2013	0	7.48249999999999993	-1	0	-1	t	f	f	f	f	f	f	f	
+3076	164213	Trains: Gen Con 2014	http://cf.geekdo-images.com/images/pic2320304.jpg	http://cf.geekdo-images.com/images/pic2320304_t.jpg	2	2	-1	t	2014	0	7.72262999999999966	-1	0	-1	t	f	f	f	f	f	f	f	
+3077	131324	Trains: Map Pack 1 – Germany/Northeastern USA	http://cf.geekdo-images.com/images/pic2059136.jpg	http://cf.geekdo-images.com/images/pic2059136_t.jpg	2	4	45	t	2012	0	7.53408999999999995	-1	0	-1	t	f	f	f	f	f	f	f	
+3078	157001	Trains: Rising Sun	http://cf.geekdo-images.com/images/pic2026066.jpg	http://cf.geekdo-images.com/images/pic2026066_t.jpg	2	4	45	f	2014	0	7.70934000000000008	628	0	8	t	f	f	f	f	f	f	f	
+3079	102680	Trajan	http://cf.geekdo-images.com/images/pic1054375.jpg	http://cf.geekdo-images.com/images/pic1054375_t.jpg	2	4	90	f	2011	0	7.82645999999999997	49	1	8	f	f	f	t	f	f	f	f	
+3080	40688	Treasure Chest	http://cf.geekdo-images.com/images/pic688564.jpg	http://cf.geekdo-images.com/images/pic688564_t.jpg	2	6	75	t	2009	0	7.29532999999999987	-1	0	-1	t	f	f	f	f	f	f	f	
+3081	163068	Trickerion: Legends of Illusion	http://cf.geekdo-images.com/images/pic2585510.png	http://cf.geekdo-images.com/images/pic2585510_t.png	2	4	120	f	2015	0	7.92105000000000015	384	1	7	t	f	f	f	f	f	f	f	
+3082	148291	Trieste	http://cf.geekdo-images.com/images/pic1791231.jpg	http://cf.geekdo-images.com/images/pic1791231_t.jpg	3	3	25	f	2013	0	6.83586000000000027	1846	0	-1	f	f	f	t	f	f	f	f	
+3083	16992	Tsuro	http://cf.geekdo-images.com/images/pic875761.jpg	http://cf.geekdo-images.com/images/pic875761_t.jpg	2	8	15	f	2004	0	6.67830000000000013	705	7	7	f	f	f	t	f	f	f	f	
+3084	124172	Tsuro of the Seas	http://cf.geekdo-images.com/images/pic1301853.jpg	http://cf.geekdo-images.com/images/pic1301853_t.jpg	2	8	30	f	2012	0	6.65401000000000042	1002	1	7	t	f	f	f	f	f	f	f	
+3085	147101	Tuscany: Expand the World of Viticulture	http://cf.geekdo-images.com/images/pic1886437.jpg	http://cf.geekdo-images.com/images/pic1886437_t.jpg	1	6	120	t	2014	0	8.65315999999999974	-1	0	9	t	f	f	f	f	f	f	f	
+3086	56995	The Twelve Doctors: Doctor Who Card Game	http://cf.geekdo-images.com/images/pic841416.jpg	http://cf.geekdo-images.com/images/pic841416_t.jpg	2	2	30	f	2009	0	7.8377100000000004	2793	1	6	t	f	f	f	f	f	f	f	
+3087	12333	Twilight Struggle	http://cf.geekdo-images.com/images/pic361592.jpg	http://cf.geekdo-images.com/images/pic361592_t.jpg	2	2	180	f	2005	0	8.35119000000000078	2	1	8	t	f	f	f	f	f	f	f	
+3088	134352	Two Rooms and a Boom	http://cf.geekdo-images.com/images/pic2335221.png	http://cf.geekdo-images.com/images/pic2335221_t.png	6	30	15	f	2013	0	7.16342999999999996	699	2	6	t	f	f	f	f	f	f	f	
+3089	126163	Tzolk'in: The Mayan Calendar	http://cf.geekdo-images.com/images/pic1413480.jpg	http://cf.geekdo-images.com/images/pic1413480_t.jpg	2	4	90	f	2012	0	7.97003000000000039	22	3	6	t	f	f	f	f	f	f	f	
+3090	143065	Tzolk'in: The Mayan Calendar – Tribes & Prophecies	http://cf.geekdo-images.com/images/pic1758469.png	http://cf.geekdo-images.com/images/pic1758469_t.png	2	5	90	t	2013	0	8.12485999999999997	-1	0	-1	t	f	f	f	f	f	f	f	
+3091	170561	Valeria: Card Kingdoms	http://cf.geekdo-images.com/images/pic2919073.jpg	http://cf.geekdo-images.com/images/pic2919073_t.jpg	1	5	45	f	2016	0	7.67077000000000009	1186	2	7	t	f	f	f	f	f	f	f	
+3092	175223	Valley of the Kings: Afterlife	http://cf.geekdo-images.com/images/pic2456554.jpg	http://cf.geekdo-images.com/images/pic2456554_t.jpg	1	4	45	f	2015	0	7.60264999999999969	1254	1	7	t	f	f	f	f	f	f	f	
+3093	157526	Viceroy	http://cf.geekdo-images.com/images/pic2254354.jpg	http://cf.geekdo-images.com/images/pic2254354_t.jpg	1	4	60	f	2014	0	7.1722999999999999	515	1	7	t	f	f	f	f	f	f	f	
+3094	104006	Village	http://cf.geekdo-images.com/images/pic2760568.jpg	http://cf.geekdo-images.com/images/pic2760568_t.jpg	2	4	90	f	2011	0	7.58823999999999987	88	3	8	t	f	f	f	f	f	f	f	
+3095	136223	Village Inn	http://cf.geekdo-images.com/images/pic2760535.jpg	http://cf.geekdo-images.com/images/pic2760535_t.jpg	2	5	120	t	2013	0	7.89770000000000039	-1	0	-1	t	f	f	f	f	f	f	f	
+3096	155996	Village Port	http://cf.geekdo-images.com/images/pic2760541.jpg	http://cf.geekdo-images.com/images/pic2760541_t.jpg	2	5	90	t	2014	0	8.08449000000000062	-1	0	-1	t	f	f	f	f	f	f	f	
+3097	128621	Viticulture	http://cf.geekdo-images.com/images/pic2619743.jpg	http://cf.geekdo-images.com/images/pic2619743_t.jpg	2	6	90	f	2013	0	7.86753000000000036	76	7	10	t	f	f	f	f	f	f	f	
+3098	171623	The Voyages of Marco Polo	http://cf.geekdo-images.com/images/pic2461346.png	http://cf.geekdo-images.com/images/pic2461346_t.png	2	4	100	f	2015	0	8.03613	38	2	8	t	f	f	f	f	f	f	f	
+3099	153905	Warband: Against the Darkness	http://cf.geekdo-images.com/images/pic2060503.jpg	http://cf.geekdo-images.com/images/pic2060503_t.jpg	2	5	60	f	2015	0	7.00121000000000038	3561	0	-1	t	f	f	f	f	f	f	f	
+3100	151384	Warfighter Expansion #1: Reloading!	http://cf.geekdo-images.com/images/pic1856022.jpg	http://cf.geekdo-images.com/images/pic1856022_t.jpg	1	6	30	t	2014	0	7.71293999999999969	-1	0	-1	f	f	f	t	f	f	f	f	
+3101	151385	Warfighter Expansion #2: Stealth	http://cf.geekdo-images.com/images/pic1856023.jpg	http://cf.geekdo-images.com/images/pic1856023_t.jpg	1	6	30	t	2014	0	7.68095000000000017	-1	0	-1	f	f	f	t	f	f	f	f	
+3102	151386	Warfighter Expansion #3: Support	http://cf.geekdo-images.com/images/pic1856021.jpg	http://cf.geekdo-images.com/images/pic1856021_t.jpg	1	6	30	t	2014	0	7.75058999999999987	-1	0	-1	f	f	f	t	f	f	f	f	
+3103	149951	Warfighter: The Tactical Special Forces Card Game	http://cf.geekdo-images.com/images/pic1843359.jpg	http://cf.geekdo-images.com/images/pic1843359_t.jpg	1	6	180	f	2014	0	7.91913999999999962	1003	1	7	f	f	f	t	f	f	f	f	
+3104	156776	Warhammer 40,000: Conquest	http://cf.geekdo-images.com/images/pic2079275.jpg	http://cf.geekdo-images.com/images/pic2079275_t.jpg	2	2	45	f	2014	0	7.58087	454	6	7	t	f	f	f	f	f	f	f	
+3105	181521	Warhammer Quest: The Adventure Card Game	http://cf.geekdo-images.com/images/pic2625794.jpg	http://cf.geekdo-images.com/images/pic2625794_t.jpg	1	4	60	f	2015	0	7.90428999999999959	368	3	8	t	f	f	f	f	f	f	f	
+3106	150312	Welcome to the Dungeon	http://cf.geekdo-images.com/images/pic2436689.jpg	http://cf.geekdo-images.com/images/pic2436689_t.jpg	2	4	30	f	2013	0	6.79799000000000042	765	0	-1	f	f	f	t	f	f	f	f	
+3107	20100	Wits & Wagers	http://cf.geekdo-images.com/images/pic521431.jpg	http://cf.geekdo-images.com/images/pic521431_t.jpg	3	7	25	f	2005	0	7.00830999999999982	410	2	8	t	f	f	f	f	f	f	f	
+3108	66588	Wits & Wagers Family	http://cf.geekdo-images.com/images/pic664569.jpg	http://cf.geekdo-images.com/images/pic664569_t.jpg	3	10	20	f	2010	0	7.02195999999999998	979	0	8	t	f	f	f	f	f	f	f	
+3109	123239	Wits & Wagers Party	http://cf.geekdo-images.com/images/pic1285411.jpg	http://cf.geekdo-images.com/images/pic1285411_t.jpg	4	18	25	f	2012	0	6.95188000000000006	1337	0	-1	t	f	f	f	f	f	f	f	
+3110	163602	XCOM: The Board Game	http://cf.geekdo-images.com/images/pic2247621.jpg	http://cf.geekdo-images.com/images/pic2247621_t.jpg	1	4	90	f	2015	0	7.30044000000000004	348	2	7	f	f	f	f	f	t	f	f	
+3111	159109	XenoShyft: Onslaught	http://cf.geekdo-images.com/images/pic2015174.jpg	http://cf.geekdo-images.com/images/pic2015174_t.jpg	1	4	60	f	2015	0	7.21586999999999978	776	1	6	f	f	f	t	f	f	f	f	
+3112	113924	Zombicide	http://cf.geekdo-images.com/images/pic1196191.jpg	http://cf.geekdo-images.com/images/pic1196191_t.jpg	1	6	60	f	2012	0	7.38785999999999987	209	1	6	t	f	f	f	f	f	f	f	
+3113	137988	Zombicide: Prison Outbreak	http://cf.geekdo-images.com/images/pic1805937.jpg	http://cf.geekdo-images.com/images/pic1805937_t.jpg	1	6	120	f	2013	0	7.67999000000000009	277	0	-1	t	f	f	f	f	f	f	f	
+3114	137987	Zombicide: Toxic City Mall	http://cf.geekdo-images.com/images/pic1805936.jpg	http://cf.geekdo-images.com/images/pic1805936_t.jpg	1	6	60	t	2013	0	7.9126599999999998	-1	0	-1	t	f	f	f	f	f	f	f	
+3115	62871	Zombie Dice	http://cf.geekdo-images.com/images/pic2664015.jpg	http://cf.geekdo-images.com/images/pic2664015_t.jpg	2	99	20	f	2010	0	6.26041000000000025	1459	13	6	t	f	f	f	f	f	f	f	
+\.
+
+
+--
+-- Name: games_id_seq; Type: SEQUENCE SET; Schema: public; Owner: uriybbylwngrsv
+--
+
+SELECT pg_catalog.setval('games_id_seq', 3115, true);
+
+
+--
+-- Name: games_pkey; Type: CONSTRAINT; Schema: public; Owner: uriybbylwngrsv
+--
+
+ALTER TABLE ONLY games
+    ADD CONSTRAINT games_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: uriybbylwngrsv
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM uriybbylwngrsv;
+GRANT ALL ON SCHEMA public TO uriybbylwngrsv;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

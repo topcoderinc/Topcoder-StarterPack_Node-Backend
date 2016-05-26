@@ -1,0 +1,11 @@
+{
+  "authSecret": "secret",
+  "port":3000,
+  "logLevel": "debug",
+  "version": "v1",
+  "dbConfig": {
+    "db_url": "postgres://test:test@localhost:5432/test",
+    "poolSize": 2,
+    "poolIdleTimeout": 1000
+  }
+}

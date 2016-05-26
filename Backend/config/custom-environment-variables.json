@@ -1,0 +1,11 @@
+{
+  "authSecret": "AUTH_SECRET",
+  "port":"PORT",
+  "logLevel": "LOG_LEVEL",
+  "version": "API_VERSION",
+  "dbConfig": {
+    "db_url": "DATABASE_URL",
+    "poolSize": "DB_POOL_SIZE",
+    "poolIdleTimeout": "DB_POOL_IDLE_TIMEOUT"
+  }
+}
