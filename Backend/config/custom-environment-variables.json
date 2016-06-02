@@ -7,5 +7,9 @@
     "db_url": "DATABASE_URL",
     "poolSize": "DB_POOL_SIZE",
     "poolIdleTimeout": "DB_POOL_IDLE_TIMEOUT"
+  },
+  "mailConfig": {
+    "mailgunKey": "MAILGUN_KEY",
+    "mailgunDomain": "MAILGUN_DOMAIN"
   }
 }

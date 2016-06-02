@@ -45,7 +45,7 @@ paths:
           schema:
             $ref: '#/definitions/Error'
         401:
-          description: Not Aauthorized - if the request didn't bear authentication information or the authentication information is invalid.
+          description: Not Authorized - if the request didn't bear authentication information or the authentication information is invalid.
           schema:
             $ref: '#/definitions/Error'
         403:
@@ -60,6 +60,35 @@ paths:
           description: Unexpected error.
           schema:
             $ref: '#/definitions/Error'
+  /emails/stats:
+    get:
+      summary: get mailgun statistics for last month
+      description: get mailgun statistics for last month
+      security:
+        - Bearer: []
+      tags:
+        - Emails
+      responses:
+        200:
+          description: mailgun usage statistics information.
+          schema:
+            $ref: '#/definitions/MailgunStatistics'
+        401:
+          description: Not Authorized - if the request didn't bear authentication information or the authentication information is invalid.
+          schema:
+            $ref: '#/definitions/Error'
+        403:
+          description: Forbidden - if the requesting user didn't have permission to perform the requested operation
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: Internal server error - if the request was properly formatted, but the operation failed on the server side
+          schema:
+            $ref: '#/definitions/Error'      
+        default:
+          description: Unexpected error.
+          schema:
+            $ref: '#/definitions/Error'  
   /emails/{id}:          
     get:
       summary: get email by id
@@ -85,7 +114,7 @@ paths:
           schema:
             $ref: '#/definitions/Error'
         401:
-          description: Not Aauthorized - if the request didn't bear authentication information or the authentication information is invalid.
+          description: Not Authorized - if the request didn't bear authentication information or the authentication information is invalid.
           schema:
             $ref: '#/definitions/Error'
         403:
@@ -124,7 +153,7 @@ paths:
           schema:
             $ref: '#/definitions/Error'
         401:
-          description: Not Aauthorized - if the request didn't bear authentication information or the authentication information is invalid.
+          description: Not Authorized - if the request didn't bear authentication information or the authentication information is invalid.
           schema:
             $ref: '#/definitions/Error'
         403:
@@ -165,7 +194,7 @@ paths:
           schema:
             $ref: '#/definitions/Error'
         401:
-          description: Not Aauthorized - if the request didn't bear authentication information or the authentication information is invalid.
+          description: Not Authorized - if the request didn't bear authentication information or the authentication information is invalid.
           schema:
             $ref: '#/definitions/Error'
         403:
@@ -230,6 +259,10 @@ definitions:
         description: The delivery time of the email. When email is sending if it is not specified or in the past, the email is sent immediately. Otherwise it is scheduled to be sent.   
   Attachment:
     type: object
+    required:
+      - file_name
+      - file_type
+      - content_bytes
     properties:
       file_name:
         type: string
@@ -239,9 +272,13 @@ definitions:
         description: The MIME type.
       content_bytes:
         type: string
-        description: The bytes content of the attachment.
+        description: The bytes content of the attachment encoded in base64.
   Image:
     type: object
+    required:
+      - name
+      - type
+      - content_bytes
     properties:
       name:
         type: string
@@ -251,7 +288,7 @@ definitions:
         description: The image MIME type.
       content_bytes:
         type: string
-        description: The bytes content of the image.      
+        description: The bytes content of the image encoded in base64.
   Response:
     required:
       - id
@@ -280,6 +317,20 @@ definitions:
         type: string
         format: date
         description: The delivery time. 
+  MailgunStatistics:
+    properties:
+      accepted:
+        type: integer
+        format: int32
+        description: number of accepted emails in queue of mailgun server
+      delivered:
+        type: integer
+        format: int32
+        description: number of delivered emails from mailgun server      
+      failed:
+        type: integer
+        format: int32
+        description: number of emails failed to deliver from mailgun server
   Error:
     type: object
     properties:
@@ -290,4 +341,3 @@ definitions:
         type: string
       fields:
         type: string
-

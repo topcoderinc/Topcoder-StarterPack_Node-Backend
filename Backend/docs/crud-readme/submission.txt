@@ -1,0 +1,18 @@
+Heroku url: https://ibp-demo.herokuapp.com/
+
+Please check codes in backend folder
+
+Please run reset request in demo folder first.
+
+
+I show extra sample module to show how module will work and reset database easily.
+
+I also show how to work with complex field type like json,array.
+
+I use eslint to check code quality.
+
+api.yaml if change matchCriteria from in body to in query to match real codes it will show error in http://editor.swagger.io/
+This is limited with swagger 2.0 spec editor.
+
+
+

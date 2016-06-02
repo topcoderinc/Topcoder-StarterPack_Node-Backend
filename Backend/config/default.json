@@ -7,5 +7,9 @@
     "db_url": "postgres://test:test@localhost:5432/test",
     "poolSize": 2,
     "poolIdleTimeout": 1000
+  },
+  "mailConfig": {    
+    "mailgunKey": "key-56d94b98fdc40e40163e45c737eb5e02",
+    "mailgunDomain": "sandboxa9269a19eb3940959b34d85b0fb1c074.mailgun.org"
   }
 }
