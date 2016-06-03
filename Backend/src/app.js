@@ -39,19 +39,26 @@ app.use((err, req, res, next) => {
 
   if (_.isArray(err.details)) {
     errorResponse.fields = _.map(err.details, 'path').join(', ');
-    _.map(err.details, (e) => {
-      if (e.message) {
-        if (_.isUndefined(errorResponse.message)) {
-          errorResponse.message = e.message;
-        } else {
-          errorResponse.message += ', ' + e.message;
+    if (err.isJoi) {
+      _.map(err.details, (e) => {
+        if (e.message) {
+          if (_.isUndefined(errorResponse.message)) {
+            errorResponse.message = e.message;
+          } else {
+            errorResponse.message += ', ' + e.message;
+          }
         }
-      }
-    });
+      });
+    }
   }
   if (_.isUndefined(errorResponse.message)) {
-    errorResponse.message = 'server error';
+    if (err.message) {
+      errorResponse.message = err.message;
+    } else {
+      errorResponse.message = 'server error';
+    }
   }
+
   errorResponse.code = status;
   res.status(status).json(errorResponse);
 });
