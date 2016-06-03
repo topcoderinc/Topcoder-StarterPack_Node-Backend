@@ -18,6 +18,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const logger = require('./common/logger');
+const _ = require('lodash');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -33,15 +34,26 @@ app.use(passport.initialize());
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   logger.logFullError(err, req.signature || `${req.method} ${req.url}`);
-  let status = err.httpStatus || 500;
-  if (err.isJoi) {
-    status = 400;
+  const errorResponse = {};
+  const status = (err.isJoi) ? 400 : err.httpStatus || 500;
+
+  if (_.isArray(err.details)) {
+    errorResponse.fields = _.map(err.details, 'path').join(', ');
+    _.map(err.details, (e) => {
+      if (e.message) {
+        if (_.isUndefined(errorResponse.message)) {
+          errorResponse.message = e.message;
+        } else {
+          errorResponse.message += ', ' + e.message;
+        }
+      }
+    });
   }
-  res.status(status).json({
-    code: String(status),
-    message: err.details && err.details[0] && err.details[0].message ?
-    err.details[0].message : (err.message || 'Server error')
-  });
+  if (_.isUndefined(errorResponse.message)) {
+    errorResponse.message = 'server error';
+  }
+  errorResponse.code = status;
+  res.status(status).json(errorResponse);
 });
 
 const port = config.port;

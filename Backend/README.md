@@ -146,12 +146,7 @@ Following variables can be configured:
         ]
 
 
-- to schedule a mail to be sent in the future, set `delivery_time`, use ISOString or UTCString format.
-
-        "delivery_time": "Mon, 30 May 2016 15:57:25 GMT" or "2016-06-02T21:31:22.145Z"
-
-
-- in javascript, very easy to format to above timestamp, natively supported in javascript by `date#toUTCString()` method
+- to schedule a mail to be sent in the future, set `delivery_time` in ISO 8601 date format.
 - for attachments, `content_bytes` should be string in base64 of original binary data.
 
         "attachments": [{

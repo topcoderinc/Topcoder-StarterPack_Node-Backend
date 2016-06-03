@@ -19,27 +19,27 @@ const CRUDService = require('../../crud/services/CRUDService');
 const attachment = Joi.object().keys({
   file_name: Joi.string().required(),
   file_type: Joi.string().required(),
-  content_bytes: Joi.string().required()
+  content_bytes: Joi.binary().encoding('base64').required()
 });
 
 const image = Joi.object().keys({
   name: Joi.string().required(),
   type: Joi.string().required(),
-  content_bytes: Joi.string().required()
+  content_bytes: Joi.binary().encoding('base64').required()
 });
 
 const emailSchema = Joi.object().keys({
-  sender: Joi.string().required(),
-  recipients: Joi.array().items(Joi.string()).required(),
-  cc_recipients: Joi.array().items(Joi.string()),
-  bcc_recipients: Joi.array().items(Joi.string()),
+  sender: Joi.string().email().required(),
+  recipients: Joi.array().items(Joi.string().email()).required(),
+  cc_recipients: Joi.array().items(Joi.string().email()),
+  bcc_recipients: Joi.array().items(Joi.string().email()),
   subject: Joi.string(),
   html_body: Joi.string(),
   text_body: Joi.string(),
   attachments: Joi.array().items(attachment),
   images: Joi.array().items(image),
-  headers: Joi.array().items(Joi.string()),
-  delivery_time: Joi.string() // in format of ISOString or UTCString
+  headers: Joi.array().items(Joi.string().regex(/^([^:]+?):(.+)$/)),
+  delivery_time: Joi.date().iso() // ISO 8601 date format.
 });
 
 /**
@@ -75,7 +75,7 @@ function* sendMail(email) {
    }
    headers should be in "headerName:headerValue" format
    attachment content_bytes should be base64 encoded.
-   delivery_time in format of ISOString or UTCString.
+   delivery_time in format of ISO 8601 date format
    */
 
   /** @type {Object} data  data to be sent to mailgun API */
@@ -226,7 +226,7 @@ function* getMailStatus(id) {
         resolve({
           delivered: true,
           // because mailgun returns unix timestamp in seconds for delivery_time
-          delivery_time: new Date(deliverEvent.timestamp * 1000).toUTCString()
+          delivery_time: new Date(deliverEvent.timestamp * 1000).toISOString()
         });
       } else {
         // not yet delivered
