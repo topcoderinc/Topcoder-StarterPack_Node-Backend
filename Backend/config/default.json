@@ -9,7 +9,7 @@
     "poolIdleTimeout": 1000
   },
   "mailConfig": {    
-    "mailgunKey": "key-56d94b98fdc40e40163e45c737eb5e02",
-    "mailgunDomain": "sandboxa9269a19eb3940959b34d85b0fb1c074.mailgun.org"
+    "mailgunKey": "key-32111f1d4060712c7fbfce9be64b2994",
+    "mailgunDomain": "sandbox9d4303fc816f40a087900785ad188fab.mailgun.org"
   }
 }

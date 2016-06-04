@@ -317,6 +317,9 @@ definitions:
         type: string
         format: date
         description: The delivery time. 
+      delivery_status:
+        type: string
+        description: The current status of the email
   MailgunStatistics:
     properties:
       accepted:

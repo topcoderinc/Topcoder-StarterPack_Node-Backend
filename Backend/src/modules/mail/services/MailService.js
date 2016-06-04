@@ -42,6 +42,12 @@ const emailSchema = Joi.object().keys({
   delivery_time: Joi.date().iso() // ISO 8601 date format.
 });
 
+const status = {
+  ACCEPTED: 'accepted',
+  DELIVERED: 'delivered',
+  FAILED: 'failed'
+};
+
 /**
  * toAttachment convert image/attachment to mailgun attachment format
  * @param  {object} attach Image/Attachment, refer to emailApi.yaml
@@ -204,8 +210,8 @@ function* getMailStatus(id) {
     // query mailgun for delivery information
     mailgun.events().get({
       // mailgun message-id saved enclosed in brackets
-      'message-id': mgId.slice(1, mgId.length - 1),
-      event: 'delivered' }, (err, body) => {
+      'message-id': mgId.slice(1, mgId.length - 1)
+    }, (err, body) => {
       // error response from mailgun
       if (err) {
         logger.info('response mailgun error:', err);
@@ -215,23 +221,36 @@ function* getMailStatus(id) {
         });
         return;
       }
+
       logger.info('response mailgun success:', body);
+
       // pick latest delivery information
       const deliverEvent = _.chain(body.items)
                             .sortBy('timestamp')
                             .last()
                             .value();
 
-      if (deliverEvent) {
+      if (!deliverEvent) {
+        resolve({
+          code: 404,
+          message: 'mail id ' + id + ' not found from mailgun event logs. could be deleted from mailgun event logs.'
+        });
+        return;
+      }
+
+      if (deliverEvent.event === status.DELIVERED) {
         resolve({
           delivered: true,
           // because mailgun returns unix timestamp in seconds for delivery_time
           delivery_time: new Date(deliverEvent.timestamp * 1000).toISOString()
+          // may or may not return delivery_status on sucessful delivery
+          // ,delivery_status: status.DELIVERED
         });
       } else {
         // not yet delivered
         resolve({
-          delivered: false
+          delivered: false,
+          delivery_status: deliverEvent.event
         });
       }
     });
@@ -280,12 +299,6 @@ deleteMail.schema = {
  * @yield {object} MailgunStatistics/Error mailgun stat information refer to emailApi.yaml
  */
 function* getMailStatistics() {
-  const status = {
-    ACCEPTED: 'accepted',
-    DELIVERED: 'delivered',
-    FAILED: 'failed'
-  };
-
   const result = yield new Promise((resolve) => {
     mailgun.stats().list({
       event: [status.ACCEPTED, status.FAILED, status.DELIVERED],
