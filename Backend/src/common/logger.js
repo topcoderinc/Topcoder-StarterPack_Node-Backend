@@ -118,7 +118,15 @@ logger.decorateWithValidators = function decorateWithValidators(service) {
     service[name] = function* serviceMethodWithValidation() {
       const args = Array.prototype.slice.call(arguments);
       const value = _combineObject(params, args);
-      const normalized = Joi.attempt(value, method.schema);
+      const normalized = yield new Promise((resolve) => {
+        Joi.validate(value, method.schema, { abortEarly: false }, (err, val) => {
+          if (err) {
+            throw err;
+          } else {
+            resolve(val);
+          }
+        });
+      });
       const newArgs = [];
       // Joi will normalize values
       // for example string number '1' to 1
