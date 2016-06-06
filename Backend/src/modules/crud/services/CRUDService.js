@@ -9,11 +9,12 @@
 const _ = require('lodash');
 const Joi = require('joi');
 const config = require('config');
-const pgp = require('pg-promise')();
 const ValidationError = require('../../../common/errors').ValidationError;
 const NotFoundError = require('../../../common/errors').NotFoundError;
 const logger = require('../../../common/logger');
 
+const pgp = require('pg-promise')();
+const db = pgp(config.dbConfig.db_url);
 
 // set the pool size
 pgp.pg.defaults.poolSize = config.dbConfig.poolSize;
@@ -214,7 +215,6 @@ function _searchQuery(tableName, criteria, columns) {
  * @private
  */
 function* _runSql(methodName, params) {
-  const db = pgp(config.dbConfig.db_url);
   return yield db[methodName](params.sql, params.parameters);
 }
 
