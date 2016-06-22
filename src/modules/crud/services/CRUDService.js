@@ -154,40 +154,41 @@ const searchOperators = {
  */
 function _searchQuery(tableName, criteria, columns) {
   criteria.matchCriteria = criteria.matchCriteria || [];
-  const parameters = _.chain(criteria.matchCriteria)
-    .keyBy(x => _escapeName(x.fieldName, true))
-    .mapValues(x => {
-      const column = _.find(columns, c => c.name === x.fieldName);
-      if (!column) {
-        throw new ValidationError(`There is no such column called '${x.fieldName}' for '${tableName}'`);
-      }
-      const columnType = column.type.toLowerCase();
-      // http://www.postgresql.org/docs/9.5/static/datatype-character.html
-      const isStringType = columnType === 'text' || columnType.indexOf('char') !== -1;
+  const parameters = [];
+  const filterKeys = [];
+  // criteria could exist same field names.
+  _.each(criteria.matchCriteria, (x) => {
+    const fieldName = _escapeName(x.fieldName, true);
+    const column = _.find(columns, c => c.name === fieldName);
+    if (!column) {
+      throw new ValidationError(`There is no such column called '${fieldName}' for '${tableName}'`);
+    }
+    const columnType = column.type.toLowerCase();
+    // http://www.postgresql.org/docs/9.5/static/datatype-character.html
+    const isStringType = columnType === 'text' || columnType.indexOf('char') !== -1;
 
-      if (isStringType && ['PartialMatching', 'ExactMatching'].indexOf(x.matchType) === -1) {
-        throw new ValidationError(`Invalid matchType for '${x.fieldName}'`);
-      } else if (!isStringType && ['PartialMatching', 'ExactMatching'].indexOf(x.matchType) !== -1) {
-        throw new ValidationError(`Invalid matchType for '${x.fieldName}'`);
-      }
-      try {
-        const val = JSON.parse(x.value);
-        return x.matchType === 'PartialMatching' ? `%${val}%` : val;
-      } catch (e) {
-        throw new ValidationError(`Invalid json string field value for '${x.fieldName}'`, e);
-      }
-    })
-    .value();
-  if (criteria.pageNumber) {
-    parameters.limit = criteria.pageSize;
-    parameters.offset = (criteria.pageNumber - 1) * criteria.pageSize;
-  }
+    if (isStringType && ['PartialMatching', 'ExactMatching'].indexOf(x.matchType) === -1) {
+      throw new ValidationError(`Invalid matchType for '${x.fieldName}'`);
+    } else if (!isStringType && ['PartialMatching', 'ExactMatching'].indexOf(x.matchType) !== -1) {
+      throw new ValidationError(`Invalid matchType for '${x.fieldName}'`);
+    }
+    try {
+      const val = JSON.parse(x.value);
+      parameters.push(x.matchType === 'PartialMatching' ? `%${val}%` : val);
+      filterKeys.push(`${_escapeName(x.fieldName)} ${searchOperators[x.matchType]} $${parameters.length}`);
+    } catch (e) {
+      throw new ValidationError(`Invalid json string field value for '${x.fieldName}'`, e);
+    }
+  });
+
   let where = '';
   let orderBy = '';
-  const limitOffset = criteria.pageNumber ? 'LIMIT ${limit} OFFSET ${offset}' : '';
-
-  const filterKeys = criteria.matchCriteria
-    .map(x => `${_escapeName(x.fieldName)} ${searchOperators[x.matchType]} \${${_escapeName(x.fieldName, true)}}`);
+  let limitOffset = '';
+  if (criteria.pageNumber) {
+    parameters.push(criteria.pageSize);
+    limitOffset = `LIMIT $${parameters.length} OFFSET $${parameters.length + 1}`;
+    parameters.push((criteria.pageNumber - 1) * criteria.pageSize);
+  }
   if (filterKeys.length > 0) {
     where = `WHERE ${filterKeys.join(' AND ')}`;
   }
@@ -200,7 +201,6 @@ function _searchQuery(tableName, criteria, columns) {
       orderBy += criteria.sortOrder === 'Descending' ? 'DESC' : 'ASC';
     }
   }
-
   return {
     sql: `SELECT * FROM ${_escapeName(tableName)} ${where} ${orderBy} ${limitOffset}`,
     totalSql: `SELECT COUNT(*) AS COUNT FROM ${_escapeName(tableName)} ${where}`,
