@@ -1,42 +1,42 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "engines": {
-    "node": "6.x.x"
-  },
-  "scripts": {
-    "start": "node src/app.js",
-    "lint": "eslint . --ext .js || true",
-    "lint:fix": "eslint . --ext .js --fix || true"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "bluebird": "^3.4.0",
-    "body-parser": "^1.15.1",
-    "co": "^4.6.0",
-    "config": "^1.20.1",
-    "cors": "^2.7.1",
-    "express": "^4.13.4",
-    "get-parameter-names": "^0.3.0",
-    "glob": "^7.0.3",
-    "joi": "^8.1.0",
-    "jsonwebtoken": "^7.0.0",
-    "lodash": "^4.12.0",
-    "mailgun-js": "^0.7.11",
-    "morgan": "^1.7.0",
-    "passport": "^0.3.2",
-    "passport-http-bearer": "^1.0.1",
-    "pg-promise": "^4.2.3",
-    "winston": "^2.2.0"
-  },
-  "devDependencies": {
-    "eslint": "^2.10.2",
-    "eslint-config-airbnb": "^9.0.1",
-    "eslint-plugin-import": "^1.8.1",
-    "eslint-plugin-jsx-a11y": "^1.2.2",
-    "eslint-plugin-react": "^5.1.1"
-  }
+    "name": "backend",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "engines": {
+        "node": "6.x.x"
+    },
+    "scripts": {
+        "start": "node app.js",
+        "lint": "eslint . --ext .js || true",
+        "lint:fix": "eslint . --ext .js --fix || true"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "bluebird": "^3.4.0",
+        "body-parser": "^1.15.1",
+        "co": "^4.6.0",
+        "config": "^1.20.1",
+        "cors": "^2.7.1",
+        "express": "^4.13.4",
+        "get-parameter-names": "^0.3.0",
+        "glob": "^7.0.3",
+        "joi": "^8.1.0",
+        "jsonwebtoken": "^7.0.0",
+        "lodash": "^4.12.0",
+        "mailgun-js": "^0.7.11",
+        "morgan": "^1.7.0",
+        "passport": "^0.3.2",
+        "passport-http-bearer": "^1.0.1",
+        "pg-promise": "^4.2.3",
+        "winston": "^2.2.0"
+    },
+    "devDependencies": {
+        "eslint": "^2.10.2",
+        "eslint-config-airbnb": "^9.0.1",
+        "eslint-plugin-import": "^1.8.1",
+        "eslint-plugin-jsx-a11y": "^1.2.2",
+        "eslint-plugin-react": "^5.1.1"
+    }
 }
