@@ -119,7 +119,7 @@ Following variables can be configured:
     - `npm install -g istanbul`
     - `npm run coverage`
 
-        ...
+        ```
         2016-09-13T20:33:46.340Z - debug: undefined
         POST /api/v1/reset 200 162.002 ms - -
             ✓ reset (163ms)
@@ -140,7 +140,7 @@ Following variables can be configured:
         Functions    : 100% ( 134/134 )
         Lines        : 92.35% ( 1352/1464 )
         ================================================================================
-
+        ```
 
 
 ## Setup postman
