@@ -87,7 +87,7 @@ Following variables can be configured:
 - after you did database restore above,
 - execute `test_files/sql/email.sql` on heroku postgres.
 
-            $ cat test_files/sql/email.sql | heroku pg:psql 
+            $ cat test_files/sql/email.sql | heroku pg:psql
             ---> Connecting to DATABASE_URL
             SET
             SET
@@ -103,6 +103,44 @@ Following variables can be configured:
             CREATE TABLE
             GRANT
             GRANT
+
+
+## Test and Coverage
+  - Follow *Database restore* to input test data
+  - Make sure `test_files/sql/email.sql` has been executed
+  - Make sure `test_files/sql/demo.sql` has been executed
+  - Adjust some test data in `test/test-helper.js`
+    - EX `emailIdDelivered`, this is email id which has delivered successful.
+      If We use email id just sent, we may get `404 Not Found` error
+      or not delivered response, both make test fail.
+      So we need input a successful delivered email id manually.
+  - Run test `npm run test`
+  - Report Coverage
+    - `npm install -g istanbul`
+    - `npm run coverage`
+
+        ```
+        2016-09-13T20:33:46.340Z - debug: undefined
+        POST /api/v1/reset 200 162.002 ms - -
+            ✓ reset (163ms)
+
+
+          84 passing (9s)
+
+        =============================================================================
+        Writing coverage object [/home/stevenfrog/temp/TC-StartPack-Nodejs-test-coverage/Topcoder-StarterPac
+        k_Node-Backend/coverage/coverage.json]
+        Writing coverage reports at [/home/stevenfrog/temp/TC-StartPack-Nodejs-test-coverage/Topcoder-Starte
+        rPack_Node-Backend/coverage]
+        =============================================================================
+
+        =============================== Coverage summary ===============================
+        Statements   : 92.44% ( 1369/1481 )
+        Branches     : 64.62% ( 221/342 )
+        Functions    : 100% ( 134/134 )
+        Lines        : 92.35% ( 1352/1464 )
+        ================================================================================
+        ```
 
 
 ## Setup postman
@@ -175,7 +213,7 @@ Following variables can be configured:
 
 ## Additional functionality
 
-- `GET /emails/stats` endpoint for tracking Mailgun usage for past 1 month. 
+- `GET /emails/stats` endpoint for tracking Mailgun usage for past 1 month.
 
 ## Module system for future developers
 
@@ -185,7 +223,7 @@ Following variables can be configured:
 - a module should have `routes.js` on top, `src/modules/<module name>/routes.js`. declare routes to controllers in this file.
 - use relative imports, e.g ) `const service = require('../services/fooService');` to load services from controllers within a module, or import between services within a module.
 - currently existing modules: `crud`, `sample`, `mail`
-- how the modules are loaded: `src/app-routes.js` will glob `src/modules/*/routes.js` and load them. 
+- how the modules are loaded: `src/app-routes.js` will glob `src/modules/*/routes.js` and load them.
 - remove a module from application by deleting a module directory.
 
 ## Authentication & Authorization

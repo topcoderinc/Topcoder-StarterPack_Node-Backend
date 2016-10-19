@@ -17,7 +17,7 @@ pgp.pg.defaults.poolSize = config.dbConfig.poolSize;
 pgp.pg.defaults.poolIdleTimeout = config.dbConfig.poolIdleTimeout;
 
 // the folder for sql files.
-const relativePath = '../../../../test_files/sql/';
+const relativePath = '../../../test_files/sql/';
 
 /**
  * Build sql file
@@ -44,7 +44,7 @@ function* reset() {
 
   yield db.none(sql('ddl.sql'));
 
-  const games = require('../../../../test_files/games.json');
+  const games = require('../../../test_files/games.json');
 
   yield db.tx((t) => {
     const inserts = [];

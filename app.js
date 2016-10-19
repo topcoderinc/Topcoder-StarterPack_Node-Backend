@@ -67,3 +67,4 @@ const port = config.port;
 app.listen(port, '0.0.0.0');
 logger.info('Express server listening on port %d in %s mode', port, process.env.NODE_ENV);
 
+module.exports = app;
